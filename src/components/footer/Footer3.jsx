@@ -86,7 +86,6 @@ function Footer3() {
               <li><Link legacyBehavior href="/pricing"><a>Pricing Plans</a></Link></li>
               <li><Link legacyBehavior href="/faq"><a>FAQs</a></Link></li>
               <li><Link legacyBehavior href="/contact"><a>Contact &amp; Schedule</a></Link></li>
-              <li><Link legacyBehavior href="/admin"><a>Admin Portal</a></Link></li>
             </ul>
           </div>
         </div>

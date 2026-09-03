@@ -97,7 +97,6 @@ function Footer6() {
                 <li><Link legacyBehavior href="/about"><a>About Us</a></Link></li>
                 <li><Link legacyBehavior href="/case-study"><a>Case Study</a></Link></li>
                 <li><Link legacyBehavior href="/blog"><a>News &amp; Article</a></Link></li>
-                <li><Link legacyBehavior href="/team1"><a>Our Team</a></Link></li>
                 <li><Link legacyBehavior href="/project"><a>All Portfolio</a></Link></li>
                 <li><Link legacyBehavior href="/pricing"><a>Pricing Plan</a></Link></li>
               </ul>
