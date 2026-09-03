@@ -1504,16 +1504,52 @@ export default function AdminDashboard() {
                             style={{ background: "#0e081f", border: "1px solid rgba(121, 40, 202, 0.3)", color: "#fff" }}
                           />
                         </div>
+                        <div className="col-md-4">
+                          <label style={{ fontSize: "13px", fontWeight: "600", color: "#cbd5e1" }}>Stats Section Title</label>
+                          <input
+                            type="text"
+                            className="form-control"
+                            value={cms?.about?.statsSectionTitle || ""}
+                            onChange={(e) => setCms({ ...cms, about: { ...cms.about, statsSectionTitle: e.target.value } })}
+                            placeholder="Our Stats"
+                            style={{ background: "#0e081f", border: "1px solid rgba(121, 40, 202, 0.3)", color: "#fff" }}
+                          />
+                        </div>
+                        <div className="col-md-4">
+                          <label style={{ fontSize: "13px", fontWeight: "600", color: "#cbd5e1" }}>Stats Section Subtitle</label>
+                          <input
+                            type="text"
+                            className="form-control"
+                            value={cms?.about?.statsSectionSubtitle || ""}
+                            onChange={(e) => setCms({ ...cms, about: { ...cms.about, statsSectionSubtitle: e.target.value } })}
+                            placeholder="Delivering mission-critical reliability..."
+                            style={{ background: "#0e081f", border: "1px solid rgba(121, 40, 202, 0.3)", color: "#fff" }}
+                          />
+                        </div>
+                        <div className="col-md-4">
+                          <label style={{ fontSize: "13px", fontWeight: "600", color: "#cbd5e1" }}>Trusted Allies Marquee Text</label>
+                          <input
+                            type="text"
+                            className="form-control"
+                            value={cms?.about?.trustedAlliesText || ""}
+                            onChange={(e) => setCms({ ...cms, about: { ...cms.about, trustedAlliesText: e.target.value } })}
+                            placeholder="We collaborate with more than 10+ Trusted Allies"
+                            style={{ background: "#0e081f", border: "1px solid rgba(121, 40, 202, 0.3)", color: "#fff" }}
+                          />
+                        </div>
                         <div className="col-12 mt-3">
                           <div className="d-flex justify-content-between align-items-center mb-2">
-                            <label style={{ fontSize: "14px", fontWeight: "700", color: "#00dfd8" }}>
-                              <i className="bi bi-bar-chart-line me-1"></i> Highlight Metric Counters (Add Multiple)
-                            </label>
+                            <div>
+                              <label style={{ fontSize: "14px", fontWeight: "700", color: "#00dfd8" }}>
+                                <i className="bi bi-bar-chart-line me-1"></i> Key Impact Counters &amp; Stats
+                              </label>
+                              <div style={{ fontSize: "11px", color: "#94a3b8" }}>Live counters for Years, Clients, Projects Completed &amp; Trusted Allies</div>
+                            </div>
                             <button
                               type="button"
                               onClick={() => {
                                 const currentStats = Array.isArray(cms?.about?.stats) ? [...cms.about.stats] : [];
-                                currentStats.push({ number: "100+", label: "New Metric", icon: "bi-check2-circle" });
+                                currentStats.push({ number: "10+", unit: "Metric", label: "New Impact Counter", icon: "bi-check2-circle" });
                                 setCms({ ...cms, about: { ...cms.about, stats: currentStats } });
                               }}
                               style={{ background: "rgba(0, 223, 216, 0.15)", border: "1px solid #00dfd8", color: "#00dfd8", borderRadius: "6px", padding: "4px 12px", fontSize: "12px", fontWeight: "700", cursor: "pointer" }}
@@ -1527,11 +1563,12 @@ export default function AdminDashboard() {
                                 <div style={{ background: "#0e081f", border: "1px solid rgba(121, 40, 202, 0.3)", borderRadius: "8px", padding: "10px" }}>
                                   <div className="d-flex gap-2">
                                     <div style={{ flex: 1 }}>
-                                      <label style={{ fontSize: "11px", color: "#94a3b8" }}>Count / Number</label>
+                                      <label style={{ fontSize: "11px", color: "#94a3b8" }}>Number</label>
                                       <input
                                         type="text"
                                         className="form-control form-control-sm"
                                         value={st.number || ""}
+                                        placeholder="e.g. 15"
                                         onChange={(e) => {
                                           const next = [...cms.about.stats];
                                           next[stIdx].number = e.target.value;
@@ -1540,12 +1577,28 @@ export default function AdminDashboard() {
                                         style={{ background: "#080411", border: "1px solid rgba(121, 40, 202, 0.3)", color: "#00dfd8", fontWeight: "700" }}
                                       />
                                     </div>
+                                    <div style={{ flex: 1 }}>
+                                      <label style={{ fontSize: "11px", color: "#94a3b8" }}>Unit</label>
+                                      <input
+                                        type="text"
+                                        className="form-control form-control-sm"
+                                        value={st.unit || ""}
+                                        placeholder="e.g. Clients"
+                                        onChange={(e) => {
+                                          const next = [...cms.about.stats];
+                                          next[stIdx].unit = e.target.value;
+                                          setCms({ ...cms, about: { ...cms.about, stats: next } });
+                                        }}
+                                        style={{ background: "#080411", border: "1px solid rgba(121, 40, 202, 0.3)", color: "#fff" }}
+                                      />
+                                    </div>
                                     <div style={{ flex: 2 }}>
-                                      <label style={{ fontSize: "11px", color: "#94a3b8" }}>Label / Title</label>
+                                      <label style={{ fontSize: "11px", color: "#94a3b8" }}>Description / Label</label>
                                       <input
                                         type="text"
                                         className="form-control form-control-sm"
                                         value={st.label || ""}
+                                        placeholder="e.g. Satisfied Clients"
                                         onChange={(e) => {
                                           const next = [...cms.about.stats];
                                           next[stIdx].label = e.target.value;

@@ -1,9 +1,14 @@
 import React from 'react'
 import Marquee from "react-fast-marquee";
+import { useCMS } from '@/hooks/useCMS';
+
 function Partnar4() {
+  const { data: cmsAbout } = useCMS("about");
+  const alliesText = cmsAbout?.trustedAlliesText || "We collaborate with more than 10+ Trusted Allies";
+
   return (
     <div className="home4-trusted-client-area sec-mar">
-    <p>We take care of more than 1.5k Trusted Allies</p>
+    <p>{alliesText}</p>
     <div className="marque-wrap">
       <div className="marquee_text">
         <Marquee>

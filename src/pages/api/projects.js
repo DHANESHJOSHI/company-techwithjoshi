@@ -43,6 +43,34 @@ const DEFAULT_PROJECTS = [
     order: 2
   },
   {
+    title: "Enterprise E-Commerce Native Mobile App (iOS & Android)",
+    slug: "enterprise-ecommerce-mobile-app",
+    category: "Mobile App & Flutter",
+    client: "OmniChannel Retail & Mobile Commerce",
+    image: "/assets/img/mobile-app/mobile-home-search.png",
+    link: "/project-details?slug=enterprise-ecommerce-mobile-app",
+    description: "Next-generation Flutter mobile application engineered for enterprise e-commerce with real-time catalog sync, offline caching, push notifications, and sub-second checkout.",
+    deliverables: [
+      "Native Flutter iOS & Android Engine",
+      "Real-Time GraphQL & REST Catalog Sync",
+      "Instant Push Notifications & Dark Mode",
+      "Streamlined 1-Step Guest Checkout & Coupons",
+      "Interactive GSAP Motion Animation Showcase"
+    ],
+    isMobileApp: true,
+    hasLiveDemo: true,
+    previewUrl: "/project-details?slug=enterprise-ecommerce-mobile-app",
+    mobileScreenshots: [
+      { id: "home", title: "Interactive Home & Search", image: "/assets/img/mobile-app/mobile-home-search.png", desc: "Dynamic homepage with live search, hero carousels, and category navigation" },
+      { id: "dark-mode", title: "Dark Mode & Push Notifications", image: "/assets/img/mobile-app/mobile-dark-mode.png", desc: "System-wide dark mode with real-time Firebase cloud messaging alerts" },
+      { id: "products", title: "All Product Types & SKUs", image: "/assets/img/mobile-app/mobile-products.png", desc: "Native support for simple, configurable, bundle, and virtual products" },
+      { id: "checkout", title: "Discount Coupons & Guest Checkout", image: "/assets/img/mobile-app/mobile-checkout.png", desc: "Frictionless 1-step checkout with promo code validation and express pay" },
+      { id: "wishlist", title: "Wishlist & Dynamic Categories", image: "/assets/img/mobile-app/mobile-wishlist.png", desc: "Persistent customer wishlist with localized taxonomy filtering" },
+      { id: "orders", title: "Order Tracking & Reviews", image: "/assets/img/mobile-app/mobile-orders.png", desc: "Real-time dispatch tracking, order timeline, and verified rating system" }
+    ],
+    order: 2
+  },
+  {
     title: "TourEx - Enterprise Travel & Tour Booking Engine",
     slug: "tourex-travel-booking-platform",
     category: "Travel & Booking Platform",

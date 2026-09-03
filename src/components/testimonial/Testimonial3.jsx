@@ -46,7 +46,8 @@ function Testimonial3() {
       .then((res) => res.json())
       .then((data) => {
         if (isMounted && Array.isArray(data) && data.length > 0) {
-          setTestimonials(data);
+          const fourFiveStars = data.filter((item) => Number(item.rating) >= 4);
+          setTestimonials(fourFiveStars);
         }
       })
       .catch((err) => console.error("Error fetching testimonials for Testimonial3:", err));

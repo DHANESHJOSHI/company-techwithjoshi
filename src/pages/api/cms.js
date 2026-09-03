@@ -58,11 +58,14 @@ const DEFAULT_CMS = {
     feature2Desc: "99.99% uptime systems backed by proactive monitoring and DevSecOps.",
     image1: "assets/img/home-3/home3-about-1.png",
     image2: "assets/img/home-3/home3-about-2.png",
+    statsSectionTitle: "Our Stats",
+    statsSectionSubtitle: "Delivering mission-critical reliability, engineering velocity, and measurable business growth.",
+    trustedAlliesText: "We collaborate with more than 10+ Trusted Allies",
     stats: [
-      { number: "5+", label: "Years of Excellence", icon: "bi-trophy" },
-      { number: "150+", label: "Enterprise Projects", icon: "bi-check2-circle" },
-      { number: "99.9%", label: "Uptime SLA", icon: "bi-shield-check" },
-      { number: "24/7", label: "Dedicated Support", icon: "bi-headset" }
+      { number: "5", unit: "Years", label: "Working With Passion", icon: "bi-trophy" },
+      { number: "15", unit: "Clients", label: "Satisfied Clients", icon: "bi-people" },
+      { number: "300+", unit: "Projects", label: "We Have Completed", icon: "bi-check2-circle" },
+      { number: "10+", unit: "Allies", label: "Trusted Industry Allies", icon: "bi-award" }
     ]
   },
   solutions: {
