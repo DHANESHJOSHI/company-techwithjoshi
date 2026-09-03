@@ -67,13 +67,26 @@ export default function Home() {
                 </a>
               </Link>
             </div>
-            <div
-              className="sidebar-button mobile-menu-btn2"
+            <button
+              type="button"
+              aria-label="Toggle Navigation Menu"
+              className={`sidebar-button mobile-menu-btn2 ${isMenuOpen ? "active" : ""}`}
               onClick={toggleMenu}
-              style={{ cursor: "pointer" }}
+              style={{
+                cursor: "pointer",
+                background: "transparent",
+                border: "1px solid rgba(255, 255, 255, 0.3)",
+                borderRadius: "12px",
+                width: "42px",
+                height: "42px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                padding: 0
+              }}
             >
-              <span />
-            </div>
+              <span style={{ pointerEvents: "none" }} />
+            </button>
           </header>
 
           <Bannder5 />

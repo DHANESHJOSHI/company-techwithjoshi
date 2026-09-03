@@ -57,6 +57,20 @@ function Header() {
     };
   }, []);
 
+  useEffect(() => {
+    if (state.isSidebarOpen) {
+      document.documentElement.style.overflow = "hidden";
+      document.body.style.overflow = "hidden";
+    } else {
+      document.documentElement.style.overflow = "";
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.documentElement.style.overflow = "";
+      document.body.style.overflow = "";
+    };
+  }, [state.isSidebarOpen]);
+
   const toggleMenu = (menu) => {
     dispatch({ type: "TOGGLE_MENU", menu });
   };
@@ -150,7 +164,7 @@ function Header() {
       </div>
       <header
         ref={headerRef}
-        className={state.scrollY > 10 ? "header-area2 sticky" : "header-area2"}
+        className={`header-area2 ${state.isSidebarOpen ? "menu-open" : ""} ${state.scrollY > 10 ? "sticky" : ""}`}
       >
         <div className="header-logo">
           <Link legacyBehavior href="/">
@@ -165,24 +179,44 @@ function Header() {
           </Link>
         </div>
         <div className={`main-menu ${state.isSidebarOpen ? "show-menu" : ""}`}>
-          <div className="mobile-logo-area d-lg-none d-flex justify-content-between align-items-center">
+          <div className="mobile-logo-area d-lg-none d-flex justify-content-between align-items-center mb-3">
             <div className="mobile-logo-wrap">
               <Link legacyBehavior href="/">
-                <a>
+                <a onClick={toggleSidebar}>
                   <img alt="TechWithJoshi" src="/assets/img/techwithjoshi-logo.svg?v=4" style={{ height: "36px", width: "auto" }} />
                 </a>
               </Link>
             </div>
+            <button
+              type="button"
+              aria-label="Close Menu"
+              onClick={toggleSidebar}
+              style={{
+                cursor: "pointer",
+                background: "rgba(121, 40, 202, 0.25)",
+                border: "1px solid rgba(0, 223, 216, 0.5)",
+                borderRadius: "50%",
+                width: "40px",
+                height: "40px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                color: "#00DFD8",
+                fontSize: "18px"
+              }}
+            >
+              <i className="bi bi-x-lg" />
+            </button>
           </div>
           <ul className="menu-list">
             <li className={currentRoute === "/" ? "active" : ""}>
               <Link legacyBehavior href="/">
-                <a>Home</a>
+                <a onClick={toggleSidebar}>Home</a>
               </Link>
             </li>
             <li className={`${currentRoute === "/about" ? "active" : ""}`}>
               <Link legacyBehavior href="/about">
-                <a>About</a>
+                <a onClick={toggleSidebar}>About</a>
               </Link>
             </li>
             <li
@@ -193,17 +227,17 @@ function Header() {
               }`}
             >
               <Link legacyBehavior href="/service">
-                <a>Service</a>
+                <a onClick={toggleSidebar}>Service</a>
               </Link>
             </li>
             <li className={currentRoute === "/project" ? "active" : ""}>
               <Link legacyBehavior href="/project">
-                <a>Project</a>
+                <a onClick={toggleSidebar}>Project</a>
               </Link>
             </li>
             <li className={currentRoute === "/faq" ? "active" : ""}>
               <Link legacyBehavior href="/faq">
-                <a>FAQ</a>
+                <a onClick={toggleSidebar}>FAQ</a>
               </Link>
             </li>
             <li
@@ -221,12 +255,17 @@ function Header() {
               }
             >
               <Link legacyBehavior href="/case-study">
-                <a>Case Study</a>
+                <a onClick={toggleSidebar}>Case Study</a>
               </Link>
             </li>
             <li className={currentRoute === "/blog" || currentRoute === "/blog-details" ? "active" : ""}>
               <Link legacyBehavior href="/blog">
-                <a>Blog</a>
+                <a onClick={toggleSidebar}>Blog</a>
+              </Link>
+            </li>
+            <li className={currentRoute === "/contact" ? "active" : ""}>
+              <Link legacyBehavior href="/contact">
+                <a onClick={toggleSidebar}>Contact</a>
               </Link>
             </li>
           </ul>
@@ -248,7 +287,7 @@ function Header() {
                 <div className="hotline-info">
                   <span>Call Us Now</span>
                   <h6>
-                    <a href="tel:29658718617">2-965-871-8617</a>
+                    <a href="tel:+917623890736">+91 7623890736</a>
                   </h6>
                 </div>
               </div>
@@ -268,7 +307,7 @@ function Header() {
                 <div className="email-info">
                   <span>Email Now</span>
                   <h6>
-                    <a href="mailto:example@gmail.com">example@gmail.com</a>
+                    <a href="mailto:work@techwithjoshi.in">work@techwithjoshi.in</a>
                   </h6>
                 </div>
               </div>
@@ -298,6 +337,24 @@ function Header() {
             <span />
           </div>
         </div>
+        {state.isSidebarOpen && (
+          <div
+            className="mobile-menu-backdrop d-lg-none"
+            onClick={toggleSidebar}
+            style={{
+              position: "fixed",
+              top: 0,
+              left: 0,
+              width: "100vw",
+              height: "100vh",
+              background: "rgba(0, 0, 0, 0.75)",
+              backdropFilter: "blur(4px)",
+              WebkitBackdropFilter: "blur(4px)",
+              zIndex: 999990,
+              cursor: "pointer"
+            }}
+          />
+        )}
       </header>
     </>
   );
