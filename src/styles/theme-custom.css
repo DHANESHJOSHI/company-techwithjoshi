@@ -1668,7 +1668,7 @@ body.bg-dark-5,
 }
 
 /* Testimonial Area */
-.home5-testimonial-area .section-title-5 span {
+.home5-testimonial-area .section-title-5 > span {
   color: #00DFD8 !important;
   letter-spacing: 2px !important;
   font-weight: 700 !important;
@@ -1923,14 +1923,14 @@ body.bg-dark-5,
 
 /* 2. Remove Harsh Green Rectangular Boxes on All Section Badges (Fix for Screenshots 2 & 3) */
 .section-title-5 > span,
-.home5-about-area .section-title-5 span,
-.home5-services-section .section-title-5 span,
-.home5-process-area .section-title-5 span,
-.home5-success-stories-area .section-title-5 span,
-.home5-testimonial-area .section-title-5 span,
-.home5-team-area .section-title-5 span,
-.home5-blog-area .section-title-5 span,
-.home5-partner-area .section-title-5 span {
+.home5-about-area .section-title-5 > span,
+.home5-services-section .section-title-5 > span,
+.home5-process-area .section-title-5 > span,
+.home5-success-stories-area .section-title-5 > span,
+.home5-testimonial-area .section-title-5 > span,
+.home5-team-area .section-title-5 > span,
+.home5-blog-area .section-title-5 > span,
+.home5-partner-area .section-title-5 > span {
   font-family: var(--font-saira), sans-serif !important;
   font-weight: 700 !important;
   font-size: 12px !important;
@@ -1951,6 +1951,27 @@ body.bg-dark-5,
 .section-title-5 > span::after {
   background-color: #00DFD8 !important;
   box-shadow: 0 0 8px #00DFD8 !important;
+}
+
+/* Reset for child spans inside cards */
+.google-rating-box span,
+.google-trust-badge span {
+  border: none !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  padding: 0 !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  margin: 0 !important;
+  letter-spacing: normal !important;
+  text-transform: none !important;
+}
+
+.google-rating-box span::before,
+.google-rating-box span::after,
+.google-trust-badge span::before,
+.google-trust-badge span::after {
+  display: none !important;
 }
 
 /* 3. Fix Marquee Overlapping Laptop Image in The Process (Fix for Screenshot 3) */

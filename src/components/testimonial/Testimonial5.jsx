@@ -151,99 +151,105 @@ function Testimonial5() {
         <div className="row g-lg-4 gy-5 align-items-center">
           {/* Left Column: Title & Google Review Solicitations */}
           <div className="col-lg-4 wow animate fadeInUp" data-wow-delay="200ms" data-wow-duration="1500ms">
-            <div className="section-title-5">
+            {/* Section Header */}
+            <div className="section-title-5 mb-3">
               <span>CLIENT REVIEWS</span>
               <h2>Happy Clients</h2>
-              <div className="testimolial-left">
-                <p>
-                  Discover how TechWithJoshi helps forward-thinking companies engineer high-performance cloud applications, AI agents, and secure distributed software.
-                </p>
+            </div>
 
-                {/* Elegant Unified Google Trust Card */}
+            <p style={{ color: "#94A3B8", fontSize: "14.5px", lineHeight: "1.7", marginBottom: "24px" }}>
+              Discover how TechWithJoshi helps forward-thinking companies engineer high-performance cloud applications, AI agents, and secure distributed software.
+            </p>
+
+            {/* Clean, Minimalist Google Trust Card */}
+            <div
+              style={{
+                background: "rgba(18, 12, 36, 0.6)",
+                border: "1px solid rgba(255, 255, 255, 0.08)",
+                borderRadius: "16px",
+                padding: "18px 20px",
+                backdropFilter: "blur(12px)",
+                maxWidth: "340px"
+              }}
+            >
+              <div className="d-flex align-items-center justify-content-between mb-2">
+                <div className="d-flex align-items-center gap-2">
+                  <img src="assets/img/home-5/google-1.svg" alt="Google" style={{ width: "24px", height: "24px" }} />
+                  <strong style={{ color: "#FFFFFF", fontSize: "14px", fontWeight: "700" }}>
+                    Google Reviews
+                  </strong>
+                </div>
                 <div
-                  className="google-trust-badge mt-4 p-3"
                   style={{
-                    background: "linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, rgba(18, 12, 36, 0.75) 100%)",
-                    border: "1px solid rgba(255, 255, 255, 0.08)",
-                    borderRadius: "16px",
-                    backdropFilter: "blur(10px)",
-                    boxShadow: "0 8px 30px rgba(0, 0, 0, 0.35)",
-                    maxWidth: "340px"
+                    fontSize: "11px",
+                    fontWeight: "700",
+                    color: "#10B981",
+                    background: "rgba(16, 185, 129, 0.12)",
+                    border: "1px solid rgba(16, 185, 129, 0.3)",
+                    padding: "2px 8px",
+                    borderRadius: "20px"
                   }}
                 >
-                  <div className="d-flex align-items-center justify-content-between mb-2">
-                    <div className="d-flex align-items-center gap-2">
-                      <img src="assets/img/home-5/google-1.svg" alt="Google" style={{ width: "22px", height: "22px" }} />
-                      <span style={{ color: "#FFFFFF", fontWeight: "700", fontSize: "13.5px" }}>Google Reviews</span>
-                    </div>
-                    <span
-                      style={{
-                        background: "rgba(16, 185, 129, 0.15)",
-                        color: "#10B981",
-                        border: "1px solid rgba(16, 185, 129, 0.3)",
-                        borderRadius: "20px",
-                        fontSize: "10.5px",
-                        fontWeight: "700",
-                        padding: "2px 8px"
-                      }}
-                    >
-                      ● Verified 5.0
-                    </span>
-                  </div>
-
-                  <div className="d-flex align-items-center gap-2 mb-3">
-                    <span style={{ fontSize: "24px", fontWeight: "800", color: "#FFFFFF", lineHeight: 1 }}>5.0</span>
-                    <div className="d-flex" style={{ color: "#FBBC05", fontSize: "14px", gap: "2px" }}>
-                      <i className="bi bi-star-fill" />
-                      <i className="bi bi-star-fill" />
-                      <i className="bi bi-star-fill" />
-                      <i className="bi bi-star-fill" />
-                      <i className="bi bi-star-fill" />
-                    </div>
-                    <span style={{ color: "#94a3b8", fontSize: "12px" }}>(All 5-Star)</span>
-                  </div>
-
-                  <div
-                    className="d-flex align-items-center justify-content-between pt-2"
-                    style={{ borderTop: "1px solid rgba(255, 255, 255, 0.06)" }}
-                  >
-                    <a
-                      href={GOOGLE_REVIEW_URL}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-decoration-none d-inline-flex align-items-center gap-1"
-                      style={{
-                        color: "#00DFD8",
-                        fontSize: "12.5px",
-                        fontWeight: "600",
-                        transition: "all 0.2s ease"
-                      }}
-                    >
-                      <span>Rate on Google</span>
-                      <i className="bi bi-box-arrow-up-right" style={{ fontSize: "11px" }} />
-                    </a>
-
-                    <button
-                      type="button"
-                      onClick={() => {
-                        setReviewSubmitted(false);
-                        setShowReviewModal(true);
-                      }}
-                      style={{
-                        background: "transparent",
-                        border: "none",
-                        color: "#94a3b8",
-                        fontSize: "12px",
-                        cursor: "pointer",
-                        padding: 0,
-                        textDecoration: "underline",
-                        textUnderlineOffset: "3px"
-                      }}
-                    >
-                      Leave feedback
-                    </button>
-                  </div>
+                  ✓ Verified 5.0
                 </div>
+              </div>
+
+              <div className="d-flex align-items-baseline gap-2 mb-2">
+                <strong style={{ fontSize: "28px", fontWeight: "800", color: "#FFFFFF", lineHeight: 1 }}>
+                  5.0
+                </strong>
+                <div className="d-flex" style={{ color: "#FBBC05", fontSize: "14px", gap: "2px" }}>
+                  <i className="bi bi-star-fill" />
+                  <i className="bi bi-star-fill" />
+                  <i className="bi bi-star-fill" />
+                  <i className="bi bi-star-fill" />
+                  <i className="bi bi-star-fill" />
+                </div>
+                <small style={{ color: "#94A3B8", fontSize: "12px" }}>
+                  (All 5-Star Ratings)
+                </small>
+              </div>
+
+              <div
+                className="d-flex align-items-center justify-content-between pt-2 mt-2"
+                style={{ borderTop: "1px solid rgba(255, 255, 255, 0.08)" }}
+              >
+                <a
+                  href={GOOGLE_REVIEW_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    color: "#00DFD8",
+                    fontSize: "12.5px",
+                    fontWeight: "600",
+                    textDecoration: "none",
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: "4px"
+                  }}
+                >
+                  Rate on Google <i className="bi bi-box-arrow-up-right" style={{ fontSize: "10px" }} />
+                </a>
+
+                <button
+                  type="button"
+                  onClick={() => {
+                    setReviewSubmitted(false);
+                    setShowReviewModal(true);
+                  }}
+                  style={{
+                    background: "none",
+                    border: "none",
+                    color: "#94A3B8",
+                    fontSize: "12px",
+                    cursor: "pointer",
+                    padding: 0,
+                    textDecoration: "underline",
+                    textUnderlineOffset: "3px"
+                  }}
+                >
+                  Leave feedback
+                </button>
               </div>
             </div>
           </div>
