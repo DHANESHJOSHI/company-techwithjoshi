@@ -17,7 +17,7 @@ Your primary goal is to understand the visitor's requirements, provide high-valu
 
 # About TechWithJoshi Private Limited
 Founder & Leadership: Dhanesh Joshi (Technical Director / Founder).
-Contact Phone / WhatsApp: +91 7623897036
+Contact Phone / WhatsApp: +91 7623890736
 Official Email: work@techwithjoshi.in | Alternative: dhaneshjoshi1234@gmail.com
 Location: Gujarat, India (Serving Global Clients across US, UK, Europe, UAE, and India)
 
@@ -48,7 +48,7 @@ Location: Gujarat, India (Serving Global Clients across US, UK, Europe, UAE, and
    - Phone / WhatsApp Number
    - Company / Startup name
    - Target Timeline & Budget (optional)
-5. **WhatsApp Escalation**: Encourage connecting directly with Founder Dhanesh Joshi on WhatsApp (+91 7623897036) for immediate sprint planning.
+5. **WhatsApp Escalation**: Encourage connecting directly with Founder Dhanesh Joshi on WhatsApp (+91 7623890736) for immediate sprint planning.
 
 ---
 

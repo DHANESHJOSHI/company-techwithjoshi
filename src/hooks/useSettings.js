@@ -2,8 +2,8 @@ import { useState, useEffect } from "react";
 
 const DEFAULT_SETTINGS = {
   siteName: "TechWithJoshi",
-  phone: "+91 7623897036",
-  whatsappLink: "https://wa.me/917623897036",
+  phone: "+91 7623890736",
+  whatsappLink: "https://wa.me/917623890736",
   emailPrimary: "work@techwithjoshi.in",
   emailSecondary: "dhaneshjoshi1234@gmail.com",
   address: "Shanoo Digital Photo Studio, Government Polytechnic, College Road, Dahod, Usarvan Part, Gujarat 389151",

@@ -83,7 +83,7 @@ function Contactpage() {
                       <i className="fas fa-phone-alt" />
                     </div>
                     <div className="info">
-                      <a href="tel:+917623897036">+91 7623897036</a>
+                      <a href="tel:+917623890736">+91 7623890736</a>
                     </div>
                   </div>
                   <div className="single-info">

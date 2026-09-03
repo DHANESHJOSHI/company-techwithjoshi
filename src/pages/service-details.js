@@ -243,7 +243,7 @@ export default function ServiceDetailsPage() {
                   </div>
                   <h5 className="text-white fw-bold mb-2">Have a Custom Project?</h5>
                   <p className="text-muted small mb-3">Get in touch for an NDA-protected architecture review &amp; timeline estimate.</p>
-                  <a href="https://wa.me/917623897036" target="_blank" rel="noopener noreferrer" className="btn btn-outline-info rounded-pill w-100 py-2">
+                  <a href="https://wa.me/917623890736" target="_blank" rel="noopener noreferrer" className="btn btn-outline-info rounded-pill w-100 py-2">
                     <i className="bi bi-whatsapp me-2" /> Chat on WhatsApp
                   </a>
                 </div>

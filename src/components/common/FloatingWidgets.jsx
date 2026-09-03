@@ -24,7 +24,7 @@ export default function FloatingWidgets() {
     const text = name.trim()
       ? `Hi Dhanesh, my name is ${name.trim()}. I visited TechWithJoshi and would like to discuss a project.`
       : "Hi Dhanesh / TechWithJoshi Team, I would like to discuss an engineering project.";
-    window.open(`https://wa.me/917623897036?text=${encodeURIComponent(text)}`, "_blank");
+    window.open(`https://wa.me/917623890736?text=${encodeURIComponent(text)}`, "_blank");
     setIsMenuOpen(false);
   };
 

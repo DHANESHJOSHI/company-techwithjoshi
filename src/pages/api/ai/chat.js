@@ -156,7 +156,7 @@ export default async function handler(req, res) {
     } catch (error) {
       console.error("POST /api/ai/chat error:", error);
       return res.status(500).json({
-        error: "Our AI specialist is temporarily recalibrating. Please reach out via WhatsApp at +91 7623897036.",
+        error: "Our AI specialist is temporarily recalibrating. Please reach out via WhatsApp at +91 7623890736.",
       });
     }
   }

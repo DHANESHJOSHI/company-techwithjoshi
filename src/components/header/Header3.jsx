@@ -117,7 +117,7 @@ function Header3() {
                   <i className="fas fa-phone-alt" />
                 </div>
                 <div className="info">
-                  <a href={`tel:${settings.phone?.replace(/[^0-9+]/g, "") || "+917623897036"}`}>{settings.phone || "+91 7623897036"}</a>
+                  <a href={`tel:${settings.phone?.replace(/[^0-9+]/g, "") || "+917623890736"}`}>{settings.phone || "+91 7623890736"}</a>
                 </div>
               </div>
               <div className="single-info">
@@ -280,7 +280,7 @@ function Header3() {
                 <div className="hotline-info">
                   <span>Call Us Now</span>
                   <h6>
-                    <a href="tel:+917623897036">+91 7623897036</a>
+                    <a href="tel:+917623890736">+91 7623890736</a>
                   </h6>
                 </div>
               </div>

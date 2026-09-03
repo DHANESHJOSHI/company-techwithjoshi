@@ -3425,7 +3425,7 @@ export default function AdminDashboard() {
                         </div>
                         <div className="col-md-6">
                           <label style={{ fontSize: "13px", fontWeight: "600", color: "#cbd5e1" }}>Phone Number</label>
-                          <input type="text" className="form-control" value={settings.phone || "+91 7623897036"} onChange={(e) => setSettings({ ...settings, phone: e.target.value })} style={{ background: "#0e081f", border: "1px solid rgba(121, 40, 202, 0.3)", color: "#fff" }} />
+                          <input type="text" className="form-control" value={settings.phone || "+91 7623890736"} onChange={(e) => setSettings({ ...settings, phone: e.target.value })} style={{ background: "#0e081f", border: "1px solid rgba(121, 40, 202, 0.3)", color: "#fff" }} />
                         </div>
                         <div className="col-md-6">
                           <label style={{ fontSize: "13px", fontWeight: "600", color: "#cbd5e1" }}>Primary Email</label>
@@ -3445,7 +3445,7 @@ export default function AdminDashboard() {
                         </div>
                         <div className="col-md-6">
                           <label style={{ fontSize: "13px", fontWeight: "600", color: "#cbd5e1" }}>WhatsApp URL</label>
-                          <input type="text" className="form-control" value={settings.whatsappLink || "https://wa.me/917623897036"} onChange={(e) => setSettings({ ...settings, whatsappLink: e.target.value })} style={{ background: "#0e081f", border: "1px solid rgba(121, 40, 202, 0.3)", color: "#fff" }} />
+                          <input type="text" className="form-control" value={settings.whatsappLink || "https://wa.me/917623890736"} onChange={(e) => setSettings({ ...settings, whatsappLink: e.target.value })} style={{ background: "#0e081f", border: "1px solid rgba(121, 40, 202, 0.3)", color: "#fff" }} />
                         </div>
                       </div>
                       <div style={{ marginTop: "24px" }}>

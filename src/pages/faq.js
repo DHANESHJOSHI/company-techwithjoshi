@@ -25,7 +25,7 @@ const DEFAULT_FAQS = [
   },
   {
     question: "How do we get started or schedule an architecture consultation?",
-    answer: "You can schedule a direct 30-minute discovery consultation using our Cal.com booking link (https://cal.com/dhanesh-joshi/30min), chat with us on WhatsApp (+91 7623897036), or submit your project details via our contact page. We typically respond within 2-4 business hours.",
+    answer: "You can schedule a direct 30-minute discovery consultation using our Cal.com booking link (https://cal.com/dhanesh-joshi/30min), chat with us on WhatsApp (+91 7623890736), or submit your project details via our contact page. We typically respond within 2-4 business hours.",
     category: "Consulting"
   }
 ];

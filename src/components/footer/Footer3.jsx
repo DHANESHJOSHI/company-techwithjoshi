@@ -27,7 +27,7 @@ function Footer3() {
               </div>
               <div className="content">
                 <span>Call Any Time</span>
-                <h6><a href={`tel:${settings.phone?.replace(/[^0-9+]/g, "") || "+917623897036"}`}>{settings.phone || "+91 7623897036"}</a></h6>
+                <h6><a href={`tel:${settings.phone?.replace(/[^0-9+]/g, "") || "+917623890736"}`}>{settings.phone || "+91 7623890736"}</a></h6>
               </div>
             </div>
           </div>

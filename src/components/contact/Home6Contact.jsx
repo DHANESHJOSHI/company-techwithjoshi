@@ -13,7 +13,7 @@ function Home6Contact() {
           <div className="contact-content">
             <p>We’re happy to answer any questions you may have and help your determine which of our services best fit your needs.</p>
             <div className="contact-number">
-              <p>Call Us Now: <a href="tel:+917623897036">+91 7623897036</a></p>
+              <p>Call Us Now: <a href="tel:+917623890736">+91 7623890736</a></p>
             </div>
             <div className="contact-step">
               <div className="accordion" id="accordionExample">

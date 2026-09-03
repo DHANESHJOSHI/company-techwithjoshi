@@ -415,7 +415,7 @@ export default function AiChatWidget({
           content:
             "⚠️ " +
             (err.message ||
-              "I am momentarily recalibrating. You can directly connect with Founder Dhanesh Joshi on WhatsApp at +91 7623897036."),
+              "I am momentarily recalibrating. You can directly connect with Founder Dhanesh Joshi on WhatsApp at +91 7623890736."),
           timestamp: new Date(),
         },
       ]);
@@ -466,7 +466,7 @@ I connected with TechWithJoshi AI on your website:
 
 I would like to discuss next steps and project estimation.`;
 
-    return `https://wa.me/917623897036?text=${encodeURIComponent(text)}`;
+    return `https://wa.me/917623890736?text=${encodeURIComponent(text)}`;
   };
 
   // Quick Chips
@@ -1018,7 +1018,7 @@ I would like to discuss next steps and project estimation.`;
                     const entered = prompt("Please enter your name so Dhanesh knows who is reaching out:", "");
                     if (entered && entered.trim()) {
                       handleNameSubmit(entered.trim());
-                      const wa = `https://wa.me/917623897036?text=${encodeURIComponent(
+                      const wa = `https://wa.me/917623890736?text=${encodeURIComponent(
                         `Hi Dhanesh,\n\nMy name is ${entered.trim()}.\nI connected with TechWithJoshi AI on your website and would like to discuss a project.`
                       )}`;
                       window.open(wa, "_blank");
