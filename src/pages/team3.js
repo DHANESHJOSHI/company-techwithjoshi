@@ -5,8 +5,8 @@ import React, { useState, useEffect } from "react";
 const DEFAULT_TEAM = [
   {
     name: "Dhanesh Joshi",
-    designation: "Founder & CEO",
-    image: "/assets/img/home-5/home5-team-01.png",
+    designation: "CEO & Founder",
+    image: "/assets/img/founder/dhanesh-joshi.png",
     socialLinks: {
       linkedin: "https://www.linkedin.com/in/dhanesh-joshi/",
       instagram: "https://www.instagram.com/its_dhanesh_joshi_/"
