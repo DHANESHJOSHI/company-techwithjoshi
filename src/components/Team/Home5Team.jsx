@@ -245,42 +245,9 @@ function Home5Team() {
   };
 
   return (
-    <div ref={sectionRef} className="home5-founder-gsap-container">
-      {/* Upper Collaboration Banner */}
-      <div className="collaborate-section mb-90">
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-12">
-              <div className="collaborate-wrapper" style={{ borderRadius: "24px" }}>
-                <div className="section-title-5">
-                  <span style={{ letterSpacing: "2.5px" }}>✦ ARCHITECTURAL PARTNERSHIP ✦</span>
-                  <h2>
-                    Ready to build <br />
-                    <span>next-gen digital systems?</span>
-                  </h2>
-                  <div className="get-btn">
-                    <a
-                      href={founderData.cal}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="primary-btn3"
-                      style={{
-                        background: "linear-gradient(135deg, #00DFD8 0%, #7928CA 100%)",
-                        boxShadow: "0 10px 30px rgba(0, 223, 216, 0.4)"
-                      }}
-                    >
-                      Book 30-Min Strategy Call
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
+    <div ref={sectionRef} className="home5-founder-gsap-container pt-40 mb-130">
       {/* Main Holographic Executive Showcase */}
-      <div className="container mb-130" id="founder-profile">
+      <div className="container" id="founder-profile">
         {/* Section Heading */}
         <div className="row mb-50">
           <div className="col-lg-12 text-center">
