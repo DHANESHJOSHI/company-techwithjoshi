@@ -532,19 +532,6 @@ export default function MobileAppGsapShowcase({ project }) {
             <i className="bi bi-arrows-fullscreen" />
             <span className="d-none d-md-inline">Zoom</span>
           </button>
-
-          {/* GitHub Repo */}
-          <a
-            href="https://github.com/DHANESHJOSHI/company-techwithjoshi"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn btn-sm btn-outline-light rounded-pill py-0 px-2 d-flex align-items-center gap-1"
-            style={{ fontSize: "11px", height: "28px" }}
-            title="View Source on GitHub"
-          >
-            <i className="bi bi-github" />
-            <span className="d-none d-lg-inline">GitHub</span>
-          </a>
         </div>
       </div>
 

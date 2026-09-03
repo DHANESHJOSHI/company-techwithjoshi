@@ -557,11 +557,13 @@ export default function ProjectDetailsPage({ initialProject = null }) {
                         <strong className="text-info">{p.category || "Full-Stack"}</strong>
                       </li>
                       {isMobileAppProject ? (
-                        <li className="pt-2 border-top border-secondary border-opacity-25 d-flex flex-column gap-2">
-                          <a
-                            href={p.githubUrl || "https://github.com/DHANESHJOSHI/company-techwithjoshi"}
-                            target="_blank"
-                            rel="noopener noreferrer"
+                        <li className="pt-2 border-top border-secondary border-opacity-25">
+                          <button
+                            type="button"
+                            onClick={() => {
+                              const el = document.getElementById("mobile-showcase-section");
+                              if (el) el.scrollIntoView({ behavior: "smooth" });
+                            }}
                             className="btn btn-info w-100 rounded-pill py-2 fw-bold text-dark d-flex align-items-center justify-content-center gap-2"
                             style={{
                               background: "linear-gradient(135deg, #00DFD8, #8B5CF6)",
@@ -569,18 +571,7 @@ export default function ProjectDetailsPage({ initialProject = null }) {
                               boxShadow: "0 4px 20px rgba(0, 223, 216, 0.3)",
                             }}
                           >
-                            <i className="bi bi-github" /> Open GitHub Repository
-                          </a>
-                          <button
-                            type="button"
-                            onClick={() => {
-                              const el = document.getElementById("mobile-showcase-section");
-                              if (el) el.scrollIntoView({ behavior: "smooth" });
-                            }}
-                            className="btn btn-outline-light w-100 rounded-pill py-2 small d-flex align-items-center justify-content-center gap-2"
-                            style={{ fontSize: "12px", borderColor: "rgba(255,255,255,0.2)" }}
-                          >
-                            <i className="bi bi-phone" /> Interactive Screen Tour
+                            <i className="bi bi-phone-fill" /> Explore Interactive 3D App Tour
                           </button>
                         </li>
                       ) : isInteractiveProject ? (

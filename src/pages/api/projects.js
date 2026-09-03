@@ -40,7 +40,6 @@ const DEFAULT_PROJECTS = [
     ],
     hasLiveDemo: false,
     isMobileApp: true,
-    githubUrl: "git@github.com:DHANESHJOSHI/company-techwithjoshi.git",
     order: 2
   },
   {
