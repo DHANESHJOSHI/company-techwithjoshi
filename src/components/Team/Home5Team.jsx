@@ -74,7 +74,7 @@ const METRICS = [
   { value: "150+", label: "Public & Client Repositories", subtext: "Production Codebases", icon: "bi-github" },
   { value: "5+ Yrs", label: "Full-Stack & Cloud Architecture", subtext: "Hands-on Mastery", icon: "bi-code-slash" },
   { value: "99.9%", label: "Production System SLA Uptime", subtext: "Zero-Downtime Cuts", icon: "bi-shield-lock-fill" },
-  { value: "100K+", label: "Active Mobile & Web Users", subtext: "Global Scale", icon: "bi-people-fill" }
+  { value: "10K+", label: "Active Mobile & Web Users", subtext: "Global Scale", icon: "bi-people-fill" }
 ];
 
 const SKILL_DOMAINS = [

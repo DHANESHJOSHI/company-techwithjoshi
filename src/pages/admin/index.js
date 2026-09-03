@@ -1888,23 +1888,125 @@ export default function AdminDashboard() {
                   </div>
                 )}
 
-                {/* 6. TESTIMONIALS CRUD */}
+                {/* 6. TESTIMONIALS & GOOGLE REVIEWS CRUD */}
                 {activeTab === "testimonials" && (
                   <div>
-                    <h2 style={{ fontSize: "18px", fontWeight: "700", marginBottom: "20px", color: "#fff" }}>Client Testimonials (Full CRUD)</h2>
+                    {/* Google Business & Review Management Card */}
+                    <div style={{ background: "rgba(18, 12, 36, 0.75)", border: "1px solid rgba(66, 133, 244, 0.35)", borderRadius: "16px", padding: "22px", marginBottom: "24px" }}>
+                      <div className="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-3">
+                        <div className="d-flex align-items-center gap-3">
+                          <div style={{ width: "42px", height: "42px", borderRadius: "12px", background: "rgba(66, 133, 244, 0.15)", border: "1px solid rgba(66, 133, 244, 0.4)", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                            <img src="assets/img/home-5/google-1.svg" alt="Google" style={{ width: "22px", height: "22px" }} />
+                          </div>
+                          <div>
+                            <h3 style={{ fontSize: "17px", fontWeight: "700", margin: 0, color: "#fff" }}>
+                              Google Reviews &amp; Client Testimonials Engine
+                            </h3>
+                            <span style={{ fontSize: "12px", color: "#00ed64", fontWeight: "600" }}>
+                              ● Verified Policy: Only 4-Star &amp; 5-Star Reviews are published to homepage
+                            </span>
+                          </div>
+                        </div>
+
+                        <div className="d-flex align-items-center gap-2">
+                          <a
+                            href="https://g.page/r/CdT43EVp0u6bEBM/review"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            style={{
+                              background: "linear-gradient(135deg, #4285F4 0%, #00DFD8 100%)",
+                              border: "none",
+                              color: "#fff",
+                              padding: "8px 16px",
+                              borderRadius: "8px",
+                              fontSize: "13px",
+                              fontWeight: "700",
+                              textDecoration: "none",
+                              display: "inline-flex",
+                              alignItems: "center",
+                              gap: "6px"
+                            }}
+                          >
+                            <i className="bi bi-box-arrow-up-right"></i>
+                            <span>Test Google Review Link</span>
+                          </a>
+
+                          <button
+                            type="button"
+                            onClick={async () => {
+                              try {
+                                showFeedback("Checking Google Reviews sync endpoint...", "info");
+                                const r = await fetch("/api/google-reviews");
+                                const d = await r.json();
+                                showFeedback(`Google Reviews verified! Total 4-5★ Reviews in DB: ${d.count || 0}`);
+                                loadData();
+                              } catch {
+                                showFeedback("Error syncing Google reviews", "danger");
+                              }
+                            }}
+                            style={{
+                              background: "rgba(255, 255, 255, 0.08)",
+                              border: "1px solid rgba(255, 255, 255, 0.2)",
+                              color: "#fff",
+                              padding: "8px 16px",
+                              borderRadius: "8px",
+                              fontSize: "13px",
+                              fontWeight: "600",
+                              cursor: "pointer"
+                            }}
+                          >
+                            <i className="bi bi-arrow-repeat me-1"></i>
+                            <span>Sync / Verify Status</span>
+                          </button>
+                        </div>
+                      </div>
+
+                      <div className="row g-2" style={{ fontSize: "12px" }}>
+                        <div className="col-md-6">
+                          <div style={{ background: "#0e081f", padding: "10px 14px", borderRadius: "8px", border: "1px solid rgba(255,255,255,0.08)" }}>
+                            <span style={{ color: "#94a3b8" }}>Google Review Shortlink: </span>
+                            <span style={{ color: "#00dfd8", wordBreak: "break-all" }}>https://g.page/r/CdT43EVp0u6bEBM/review</span>
+                          </div>
+                        </div>
+                        <div className="col-md-6">
+                          <div style={{ background: "#0e081f", padding: "10px 14px", borderRadius: "8px", border: "1px solid rgba(255,255,255,0.08)" }}>
+                            <span style={{ color: "#94a3b8" }}>Google Maps Place ID: </span>
+                            <span style={{ color: "#00ed64" }}>ChIJEVBKyPwdYTkR1PjcRWnS7ps</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <h2 style={{ fontSize: "18px", fontWeight: "700", marginBottom: "20px", color: "#fff" }}>
+                      Published Testimonials &amp; Reviews ({testimonials.length})
+                    </h2>
                     <div className="row g-4 mb-4">
                       {testimonials.map((t) => (
                         <div key={t._id} className="col-md-4">
-                          <div style={{ background: "rgba(18, 12, 36, 0.7)", border: "1px solid rgba(121, 40, 202, 0.3)", borderRadius: "14px", padding: "20px" }}>
-                            <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "10px" }}>
-                              <img src={t.avatar || "assets/img/home-3/h3-testi-01.png"} alt={t.name} style={{ width: "45px", height: "45px", borderRadius: "50%" }} />
-                              <div>
-                                <h5 style={{ fontSize: "15px", fontWeight: "700", margin: 0, color: "#fff" }}>{t.name}</h5>
-                                <span style={{ fontSize: "12px", color: "#00dfd8" }}>{t.designation}</span>
+                          <div style={{ background: "rgba(18, 12, 36, 0.7)", border: t.source === "google" ? "1px solid rgba(16, 185, 129, 0.4)" : "1px solid rgba(121, 40, 202, 0.3)", borderRadius: "14px", padding: "20px", height: "100%", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+                            <div>
+                              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "12px" }}>
+                                <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                                  {t.avatar ? (
+                                    <img src={t.avatar} alt={t.name} style={{ width: "42px", height: "42px", borderRadius: "50%", objectFit: "cover" }} />
+                                  ) : (
+                                    <div style={{ width: "42px", height: "42px", borderRadius: "50%", background: t.color || "#10B981", display: "flex", alignItems: "center", justifyContent: "center", color: "#fff", fontWeight: "700" }}>
+                                      {t.initial || (t.name ? t.name[0] : "C")}
+                                    </div>
+                                  )}
+                                  <div>
+                                    <h5 style={{ fontSize: "14.5px", fontWeight: "700", margin: 0, color: "#fff" }}>{t.name}</h5>
+                                    <span style={{ fontSize: "11.5px", color: "#94a3b8" }}>{t.designation}</span>
+                                  </div>
+                                </div>
+                                <span style={{ background: t.source === "google" ? "rgba(16, 185, 129, 0.2)" : "rgba(0, 223, 216, 0.2)", color: t.source === "google" ? "#10B981" : "#00DFD8", border: t.source === "google" ? "1px solid #10B981" : "1px solid #00DFD8", borderRadius: "6px", fontSize: "10px", fontWeight: "700", padding: "2px 8px" }}>
+                                  {t.source === "google" ? "Google 5★" : `${t.rating || 5}★ Client`}
+                                </span>
                               </div>
+                              <p style={{ fontSize: "13px", color: "#cbd5e1", lineHeight: "1.6" }}>“{t.review}”</p>
                             </div>
-                            <p style={{ fontSize: "13px", color: "#cbd5e1" }}>“{t.review}”</p>
-                            <div style={{ display: "flex", gap: "8px", marginTop: "10px" }}>
+
+                            <div style={{ display: "flex", gap: "8px", marginTop: "14px", paddingTop: "12px", borderTop: "1px solid rgba(255, 255, 255, 0.06)" }}>
                               <button onClick={() => setEditingItem({ type: 'testimonial', data: { ...t } })} style={{ background: "rgba(0, 223, 216, 0.15)", border: "1px solid rgba(0, 223, 216, 0.3)", color: "#00dfd8", borderRadius: "6px", padding: "4px 12px", fontSize: "12px", cursor: "pointer" }}>
                                 <i className="bi bi-pencil me-1"></i> Edit
                               </button>
@@ -1918,25 +2020,27 @@ export default function AdminDashboard() {
                     </div>
 
                     <form onSubmit={addTestimonial} style={{ background: "rgba(18, 12, 36, 0.5)", border: "1px dashed rgba(0, 223, 216, 0.4)", borderRadius: "14px", padding: "24px" }}>
-                      <h4 style={{ fontSize: "15px", fontWeight: "700", color: "#00dfd8", marginBottom: "16px" }}>+ Add Client Testimonial</h4>
+                      <h4 style={{ fontSize: "15px", fontWeight: "700", color: "#00dfd8", marginBottom: "16px" }}>+ Add Client Testimonial / Google Review</h4>
                       <div className="row g-3">
                         <div className="col-md-3">
-                          <input type="text" placeholder="Client Name" required className="form-control" value={newTestimonial.name} onChange={(e) => setNewTestimonial({ ...newTestimonial, name: e.target.value })} style={{ background: "#0e081f", border: "1px solid rgba(121, 40, 202, 0.3)", color: "#fff" }} />
+                          <input type="text" placeholder="Reviewer / Client Name" required className="form-control" value={newTestimonial.name} onChange={(e) => setNewTestimonial({ ...newTestimonial, name: e.target.value })} style={{ background: "#0e081f", border: "1px solid rgba(121, 40, 202, 0.3)", color: "#fff" }} />
                         </div>
                         <div className="col-md-3">
-                          <input type="text" placeholder="Designation" className="form-control" value={newTestimonial.designation} onChange={(e) => setNewTestimonial({ ...newTestimonial, designation: e.target.value })} style={{ background: "#0e081f", border: "1px solid rgba(121, 40, 202, 0.3)", color: "#fff" }} />
+                          <input type="text" placeholder="Designation / Role" className="form-control" value={newTestimonial.designation} onChange={(e) => setNewTestimonial({ ...newTestimonial, designation: e.target.value })} style={{ background: "#0e081f", border: "1px solid rgba(121, 40, 202, 0.3)", color: "#fff" }} />
                         </div>
                         <div className="col-md-2">
                           <input type="text" placeholder="Company" className="form-control" value={newTestimonial.company} onChange={(e) => setNewTestimonial({ ...newTestimonial, company: e.target.value })} style={{ background: "#0e081f", border: "1px solid rgba(121, 40, 202, 0.3)", color: "#fff" }} />
                         </div>
                         <div className="col-md-2">
-                          <input type="text" placeholder="Avatar URL" className="form-control" value={newTestimonial.avatar} onChange={(e) => setNewTestimonial({ ...newTestimonial, avatar: e.target.value })} style={{ background: "#0e081f", border: "1px solid rgba(121, 40, 202, 0.3)", color: "#fff" }} />
+                          <select className="form-control" value={newTestimonial.source || "client"} onChange={(e) => setNewTestimonial({ ...newTestimonial, source: e.target.value })} style={{ background: "#0e081f", border: "1px solid rgba(121, 40, 202, 0.3)", color: "#fff" }}>
+                            <option value="client">Client Review</option>
+                            <option value="google">Google Review</option>
+                          </select>
                         </div>
                         <div className="col-md-2">
                           <select className="form-control" value={newTestimonial.rating} onChange={(e) => setNewTestimonial({ ...newTestimonial, rating: parseInt(e.target.value) })} style={{ background: "#0e081f", border: "1px solid rgba(121, 40, 202, 0.3)", color: "#fff" }}>
                             <option value={5}>5 Stars ★★★★★</option>
                             <option value={4}>4 Stars ★★★★</option>
-                            <option value={3}>3 Stars ★★★</option>
                           </select>
                         </div>
                         <div className="col-12">
@@ -1944,7 +2048,7 @@ export default function AdminDashboard() {
                         </div>
                         <div className="col-12">
                           <button type="submit" disabled={saving} style={{ background: "rgba(0, 223, 216, 0.2)", border: "1px solid #00dfd8", color: "#00dfd8", padding: "8px 20px", borderRadius: "8px", fontWeight: "600", cursor: "pointer" }}>
-                            Save Testimonial to MongoDB
+                            Save Review to MongoDB
                           </button>
                         </div>
                       </div>

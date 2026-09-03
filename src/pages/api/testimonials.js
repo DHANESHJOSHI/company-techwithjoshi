@@ -38,39 +38,70 @@ export default async function handler(req, res) {
     const testCol = db.collection("testimonials");
 
     if (req.method === "GET") {
-      let tests = await testCol.find({}).sort({ order: 1 }).toArray();
+      const admin = getAdminFromRequest(req);
+      const isIncludeAll = req.query.includeAll === "true" && !!admin;
+
+      const query = isIncludeAll
+        ? {}
+        : {
+            rating: { $gte: 4 },
+            published: { $ne: false }
+          };
+
+      let tests = await testCol.find(query).sort({ order: 1, createdAt: -1 }).toArray();
       if (!tests || tests.length === 0) {
-        const docsToInsert = DEFAULT_TESTIMONIALS.map((t) => ({ ...t, createdAt: new Date(), updatedAt: new Date() }));
-        await testCol.insertMany(docsToInsert);
-        tests = await testCol.find({}).sort({ order: 1 }).toArray();
+        // Fallback check if collection is empty
+        const count = await testCol.countDocuments();
+        if (count === 0) {
+          const docsToInsert = DEFAULT_TESTIMONIALS.map((t) => ({ ...t, published: true, createdAt: new Date(), updatedAt: new Date() }));
+          await testCol.insertMany(docsToInsert);
+          tests = await testCol.find(query).sort({ order: 1, createdAt: -1 }).toArray();
+        }
       }
       return res.status(200).json(tests);
+    }
+
+    // Public Review Submission or Admin Management
+    if (req.method === "POST") {
+      const admin = getAdminFromRequest(req);
+      const { name, designation, company, review, rating, avatar, initial, color, order, source, googleReviewUrl } = req.body;
+      if (!name || !review) return res.status(400).json({ error: "Name and review text are required" });
+
+      const numRating = rating ? parseInt(rating) : 5;
+      const isHighRating = numRating >= 4;
+
+      const newTestimonial = {
+        name: name.trim(),
+        designation: designation ? designation.trim() : (admin ? "Client" : "Verified Client"),
+        company: company ? company.trim() : "",
+        review: review.trim(),
+        rating: Math.max(1, Math.min(5, numRating)),
+        avatar: avatar || "",
+        initial: initial || (name.trim() ? name.trim()[0].toUpperCase() : "C"),
+        color: color || (numRating === 5 ? "#10B981" : "#3B82F6"),
+        order: order ? parseInt(order) : 99,
+        source: source || (admin ? "native" : "client_submitted"),
+        badge: source === "google" ? "VERIFIED GOOGLE REVIEW" : "VERIFIED CLIENT",
+        googleReviewUrl: googleReviewUrl || "https://g.page/r/CdT43EVp0u6bEBM/review",
+        published: admin ? true : isHighRating, // 4-5 stars published automatically; 1-3 stars held for private review
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        createdBy: admin ? admin.username : "public_client_submission"
+      };
+
+      const result = await testCol.insertOne(newTestimonial);
+      return res.status(201).json({
+        success: true,
+        id: result.insertedId,
+        data: newTestimonial,
+        isHighRating,
+        googleReviewUrl: "https://g.page/r/CdT43EVp0u6bEBM/review"
+      });
     }
 
     const admin = getAdminFromRequest(req);
     if (!admin) {
       return res.status(401).json({ error: "Unauthorized: Admin authorization required" });
-    }
-
-    if (req.method === "POST") {
-      const { name, designation, company, review, rating, avatar, order } = req.body;
-      if (!name || !review) return res.status(400).json({ error: "Name and review required" });
-
-      const newTestimonial = {
-        name,
-        designation: designation || "Client",
-        company: company || "",
-        review,
-        rating: rating ? parseInt(rating) : 5,
-        avatar: avatar || "assets/img/home-3/h3-testi-01.png",
-        order: order ? parseInt(order) : 99,
-        createdAt: new Date(),
-        updatedAt: new Date(),
-        createdBy: admin.username,
-      };
-
-      const result = await testCol.insertOne(newTestimonial);
-      return res.status(201).json({ success: true, id: result.insertedId, data: newTestimonial });
     }
 
     if (req.method === "PUT") {
