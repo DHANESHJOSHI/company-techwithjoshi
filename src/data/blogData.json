@@ -1,0 +1,50 @@
+[
+    {
+        "id": "1",
+        "category": "Artificial Intelligence",
+        "img": "/assets/img/home-3/home3-blog-01.png",
+        "date": "Aug 15, 2024",
+        "count_comment": 14,
+        "title": "Architecting Real-Time AI Agents with Next.js and Distributed LLMs"
+    },
+    {
+        "id": "2",
+        "category": "Cloud & DevOps",
+        "img": "/assets/img/home-3/home3-blog-02.png",
+        "date": "Aug 22, 2024",
+        "count_comment": 9,
+        "title": "Zero-Downtime Cloud Migration: Kubernetes Strategies for High-Scale SaaS"
+    },
+    {
+        "id": "3",
+        "category": "Web Development",
+        "img": "/assets/img/home-3/home3-blog-03.png",
+        "date": "Sep 02, 2024",
+        "count_comment": 12,
+        "title": "Modern Web Performance: Optimizing Full-Stack React Apps & Core Web Vitals"
+    },
+    {
+        "id": "4",
+        "category": "Data Engineering",
+        "img": "/assets/img/home-3/home3-blog-04.png",
+        "date": "Sep 18, 2024",
+        "count_comment": 8,
+        "title": "Building Scalable Vector Databases for Enterprise RAG & Generative AI"
+    },
+    {
+        "id": "5",
+        "category": "Cybersecurity",
+        "img": "/assets/img/home-3/home3-blog-05.png",
+        "date": "Oct 05, 2024",
+        "count_comment": 17,
+        "title": "Implementing Zero Trust Security in Cloud-Native Web Applications"
+    },
+    {
+        "id": "6",
+        "category": "System Architecture",
+        "img": "/assets/img/home-3/home3-blog-06.png",
+        "date": "Oct 19, 2024",
+        "count_comment": 11,
+        "title": "High-Throughput Microservices: Scaling Event-Driven Architectures"
+    }
+]

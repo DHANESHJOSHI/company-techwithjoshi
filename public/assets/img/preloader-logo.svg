@@ -1,0 +1,22 @@
+<svg width="220" height="42" viewBox="0 0 220 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="p-twj-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#7928CA" />
+      <stop offset="50%" stop-color="#8B5CF6" />
+      <stop offset="100%" stop-color="#00DFD8" />
+    </linearGradient>
+    <linearGradient id="p-text-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00DFD8" />
+      <stop offset="100%" stop-color="#38BDF8" />
+    </linearGradient>
+  </defs>
+  <g transform="translate(2, 3)">
+    <rect x="0" y="0" width="36" height="36" rx="10" fill="url(#p-twj-grad)" />
+    <rect x="2" y="2" width="32" height="32" rx="8" fill="#0C0618" />
+    <path d="M11 12H25M18 12V24C18 25.5 16.5 26.5 14.5 26.5C13 26.5 11.5 25.5 11.5 24" stroke="url(#p-twj-grad)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" />
+    <circle cx="23" cy="22" r="2.2" fill="#00DFD8" />
+  </g>
+  <text x="48" y="26" font-family="'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="21" font-weight="800" fill="#FFFFFF" letter-spacing="-0.5px">
+    TechWith<tspan fill="url(#p-text-grad)" font-weight="900">Joshi</tspan>
+  </text>
+</svg>

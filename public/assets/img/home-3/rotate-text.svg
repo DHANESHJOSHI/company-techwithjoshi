@@ -1,0 +1,16 @@
+<svg width="180" height="180" viewBox="0 0 180 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <path id="circlePath" d="M 90, 90 m -66, 0 a 66,66 0 1,1 132,0 a 66,66 0 1,1 -132,0" />
+    <linearGradient id="badgeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00DFD8" />
+      <stop offset="50%" stop-color="#8B5CF6" />
+      <stop offset="100%" stop-color="#00DFD8" />
+    </linearGradient>
+  </defs>
+  <!-- Rotating Outer Ring Text -->
+  <text font-family="'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="9.5" font-weight="800" fill="url(#badgeGrad)" letter-spacing="2.6px">
+    <textPath href="#circlePath">
+      ✦ 5 YEARS OF EXCELLENCE ✦ TECHWITHJOSHI 
+    </textPath>
+  </text>
+</svg>
