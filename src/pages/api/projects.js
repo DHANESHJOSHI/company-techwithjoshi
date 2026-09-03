@@ -23,7 +23,7 @@ const DEFAULT_PROJECTS = [
     order: 1
   },
   {
-    title: "Enterprise Native E-Commerce Mobile App (iOS & Android)",
+    title: "Enterprise E-Commerce Mobile App (iOS & Android)",
     slug: "ecommerce-mobile-app",
     category: "Mobile App & E-Commerce Engineering",
     client: "Global Omni-Channel Retail & Mobile Brands",
@@ -32,7 +32,7 @@ const DEFAULT_PROJECTS = [
     description: "Enterprise-grade native iOS and Android e-commerce application powered by Flutter, React Native, and high-throughput Headless E-Commerce REST & GraphQL APIs. Features real-time multi-channel sync, native OLED dark mode, FCM push alerts, offline SQLite cache, biometric auth, and interactive 3D motion showcase.",
     deliverables: [
       "Native Flutter & React Native Cross-Platform Core",
-      "Real-Time Headless E-Commerce REST & GraphQL Engine Integration",
+      "Real-Time E-Commerce REST & GraphQL Engine Integration",
       "Native OLED Dark Mode & Adaptive Theme Engine",
       "Sub-Second Firebase Cloud Messaging Push Alerts",
       "Offline SQLite / Hive Cache with Background Sync",
