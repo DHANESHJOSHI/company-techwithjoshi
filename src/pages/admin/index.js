@@ -29,6 +29,31 @@ export default function AdminDashboard() {
   const [selectedSessionTranscript, setSelectedSessionTranscript] = useState(null);
   const [aiGenLoading, setAiGenLoading] = useState(false);
   const [aiFilter, setAiFilter] = useState("all");
+  const [ceoProfile, setCeoProfile] = useState({
+    name: "Dhanesh Joshi",
+    designation: "CEO & Founder",
+    company: "TechWithJoshi Private Limited",
+    location: "Gujarat, India • Global Operations",
+    headline: "Visionary Full-Stack Engineer, AI Innovator & Cloud Enterprise Architect",
+    image: "/assets/img/founder/dhanesh-joshi.png",
+    bio: "",
+    visionQuote: "",
+    quoteAuthor: "Dhanesh Joshi",
+    quoteAuthorTitle: "CEO & Principal Architect",
+    credlyBadgeUrl: "https://www.credly.com/badges/b02cb041-67bd-487d-b261-7b7318a89f36/linked_in?t=sr9p06",
+    credlyImg: "/assets/img/founder/mongodb-associate-developer-badge.png",
+    linkedinCertificationsUrl: "https://www.linkedin.com/in/dhanesh-joshi/details/certifications/",
+    socialLinks: {
+      linkedin: "https://www.linkedin.com/in/dhanesh-joshi/",
+      github: "https://github.com/DHANESHJOSHI",
+      instagram: "https://www.instagram.com/its_dhanesh_joshi_/",
+      cal: "https://cal.com/dhanesh-joshi/30min"
+    },
+    metrics: [],
+    certifications: [],
+    skillDomains: [],
+    techBadges: []
+  });
 
   // UI States
   const [loading, setLoading] = useState(true);
@@ -198,6 +223,40 @@ export default function AdminDashboard() {
       setFaqs(Array.isArray(faqData) ? faqData : []);
       setTestimonials(Array.isArray(testData) ? testData : []);
       setTeam(Array.isArray(teamData) ? teamData : []);
+      const founderDoc = Array.isArray(teamData) ? teamData.find(m => (m.name && m.name.toLowerCase().includes("dhanesh")) || (m.designation && m.designation.toLowerCase().includes("founder"))) : null;
+      if (founderDoc) {
+        let socials = founderDoc.socialLinks;
+        if (typeof socials === "string") {
+          try { socials = JSON.parse(socials.replace(/'/g, '"')); } catch {}
+        }
+        setCeoProfile({
+          _id: founderDoc._id,
+          id: founderDoc.id || "dhanesh-joshi",
+          name: founderDoc.name || "Dhanesh Joshi",
+          designation: founderDoc.designation || "CEO & Founder",
+          company: founderDoc.company || "TechWithJoshi Private Limited",
+          location: founderDoc.location || "Gujarat, India • Global Operations",
+          headline: founderDoc.headline || "Visionary Full-Stack Engineer, AI Innovator & Cloud Enterprise Architect",
+          image: founderDoc.image || "/assets/img/founder/dhanesh-joshi.png",
+          bio: founderDoc.bio || "",
+          visionQuote: founderDoc.visionQuote || "",
+          quoteAuthor: founderDoc.quoteAuthor || "Dhanesh Joshi",
+          quoteAuthorTitle: founderDoc.quoteAuthorTitle || "CEO & Principal Architect",
+          credlyBadgeUrl: founderDoc.credlyBadgeUrl || "https://www.credly.com/badges/b02cb041-67bd-487d-b261-7b7318a89f36/linked_in?t=sr9p06",
+          credlyImg: founderDoc.credlyImg || "/assets/img/founder/mongodb-associate-developer-badge.png",
+          linkedinCertificationsUrl: founderDoc.linkedinCertificationsUrl || "https://www.linkedin.com/in/dhanesh-joshi/details/certifications/",
+          socialLinks: {
+            linkedin: socials?.linkedin || "https://www.linkedin.com/in/dhanesh-joshi/",
+            github: socials?.github || "https://github.com/DHANESHJOSHI",
+            instagram: socials?.instagram || "https://www.instagram.com/its_dhanesh_joshi_/",
+            cal: socials?.cal || "https://cal.com/dhanesh-joshi/30min"
+          },
+          metrics: Array.isArray(founderDoc.metrics) ? founderDoc.metrics : [],
+          certifications: Array.isArray(founderDoc.certifications) ? founderDoc.certifications : [],
+          skillDomains: Array.isArray(founderDoc.skillDomains) ? founderDoc.skillDomains : [],
+          techBadges: Array.isArray(founderDoc.techBadges) ? founderDoc.techBadges : []
+        });
+      }
       setBlogs(Array.isArray(blogsData) ? blogsData : []);
       if (newsData && newsData.success) {
         setNews(newsData.customNews || []);
@@ -525,6 +584,56 @@ export default function AdminDashboard() {
       }
     } catch {
       showFeedback("Failed to delete team member", "danger");
+    }
+  };
+
+  const saveCeoProfile = async (e) => {
+    if (e) e.preventDefault();
+    setSaving(true);
+    try {
+      const founder = team.find((m) => (m.name && m.name.toLowerCase().includes("dhanesh")) || (m.designation && m.designation.toLowerCase().includes("founder")));
+      const payload = {
+        ...(founder?._id ? { _id: founder._id } : {}),
+        id: "dhanesh-joshi",
+        name: ceoProfile.name,
+        designation: ceoProfile.designation,
+        company: ceoProfile.company,
+        location: ceoProfile.location,
+        headline: ceoProfile.headline,
+        image: ceoProfile.image,
+        bio: ceoProfile.bio,
+        visionQuote: ceoProfile.visionQuote,
+        quoteAuthor: ceoProfile.quoteAuthor,
+        quoteAuthorTitle: ceoProfile.quoteAuthorTitle,
+        credlyBadgeUrl: ceoProfile.credlyBadgeUrl,
+        credlyImg: ceoProfile.credlyImg,
+        linkedinCertificationsUrl: ceoProfile.linkedinCertificationsUrl,
+        socialLinks: ceoProfile.socialLinks,
+        metrics: ceoProfile.metrics,
+        certifications: ceoProfile.certifications,
+        skillDomains: ceoProfile.skillDomains,
+        techBadges: Array.isArray(ceoProfile.techBadges) ? ceoProfile.techBadges : (typeof ceoProfile.techBadges === "string" ? ceoProfile.techBadges.split(",").map(s => s.trim()).filter(Boolean) : []),
+        updatedAt: new Date()
+      };
+
+      const res = await fetch("/api/team", {
+        method: "PUT",
+        headers: getAuthHeaders(),
+        body: JSON.stringify(payload)
+      });
+
+      if (res.ok) {
+        showFeedback("CEO & Founder Profile saved successfully to MongoDB Atlas!");
+        const refreshed = await fetch("/api/team").then(r => r.json());
+        setTeam(Array.isArray(refreshed) ? refreshed : []);
+      } else {
+        const err = await res.json().catch(() => ({}));
+        showFeedback("Failed to update CEO profile: " + (err.error || res.statusText), "danger");
+      }
+    } catch (err) {
+      showFeedback("Error saving CEO profile: " + err.message, "danger");
+    } finally {
+      setSaving(false);
     }
   };
 
@@ -945,6 +1054,7 @@ export default function AdminDashboard() {
               { id: "testimonials", label: "Client Testimonials", icon: "bi-chat-square-quote" },
               { id: "pricing", label: "Pricing Packages", icon: "bi-tags" },
               { id: "faqs", label: "FAQs Manager", icon: "bi-question-circle" },
+              { id: "ceoProfile", label: "CEO & Founder Studio", icon: "bi-person-badge-fill" },
               { id: "team", label: "Team Leaders", icon: "bi-people" },
             ].map((tab) => (
               <button
@@ -1924,6 +2034,529 @@ export default function AdminDashboard() {
                         <div className="col-12">
                           <button type="submit" disabled={saving} style={{ background: "rgba(0, 223, 216, 0.2)", border: "1px solid #00dfd8", color: "#00dfd8", padding: "8px 20px", borderRadius: "8px", fontWeight: "600", cursor: "pointer" }}>
                             Save FAQ to MongoDB
+                          </button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                )}
+
+                {/* CEO & FOUNDER PROFILE STUDIO */}
+                {activeTab === "ceoProfile" && (
+                  <div>
+                    {/* Header & Save Bar */}
+                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "24px", flexWrap: "wrap", gap: "14px", background: "rgba(18, 12, 36, 0.7)", padding: "20px 24px", borderRadius: "16px", border: "1px solid rgba(0, 223, 216, 0.3)" }}>
+                      <div>
+                        <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "6px" }}>
+                          <span style={{ width: "8px", height: "8px", borderRadius: "50%", background: "#00ed64", boxShadow: "0 0 10px #00ed64", display: "inline-block" }}></span>
+                          <span style={{ fontSize: "12px", fontWeight: "700", color: "#00ed64", letterSpacing: "1px" }}>LIVE IN MONGODB: collection("team")</span>
+                        </div>
+                        <h2 style={{ fontSize: "22px", fontWeight: "800", margin: 0, color: "#fff" }}>
+                          CEO &amp; Founder Spotlight Studio
+                        </h2>
+                        <p style={{ fontSize: "13px", color: "#94a3b8", margin: "4px 0 0 0" }}>
+                          Manage Dhanesh Joshi's Executive Bio, Official Credly Badges, LinkedIn Certifications, Live Metrics, and Tech Stack.
+                        </p>
+                      </div>
+
+                      <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                        <a
+                          href="/#founder-profile"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          style={{
+                            background: "rgba(255, 255, 255, 0.08)",
+                            border: "1px solid rgba(255, 255, 255, 0.2)",
+                            color: "#fff",
+                            padding: "9px 18px",
+                            borderRadius: "10px",
+                            fontSize: "13px",
+                            fontWeight: "600",
+                            textDecoration: "none",
+                            display: "inline-flex",
+                            alignItems: "center",
+                            gap: "6px"
+                          }}
+                        >
+                          <i className="bi bi-box-arrow-up-right"></i>
+                          <span>View on Homepage</span>
+                        </a>
+
+                        <button
+                          type="button"
+                          onClick={saveCeoProfile}
+                          disabled={saving}
+                          style={{
+                            background: "linear-gradient(135deg, #00DFD8 0%, #7928CA 100%)",
+                            border: "none",
+                            color: "#fff",
+                            padding: "9px 24px",
+                            borderRadius: "10px",
+                            fontSize: "13.5px",
+                            fontWeight: "700",
+                            cursor: "pointer",
+                            boxShadow: "0 4px 18px rgba(0, 223, 216, 0.4)",
+                            display: "inline-flex",
+                            alignItems: "center",
+                            gap: "8px"
+                          }}
+                        >
+                          <i className="bi bi-cloud-arrow-up-fill"></i>
+                          <span>{saving ? "Saving to MongoDB..." : "Save CEO Profile"}</span>
+                        </button>
+                      </div>
+                    </div>
+
+                    <form onSubmit={saveCeoProfile}>
+                      <div className="row g-4 mb-4">
+                        {/* 1. Visuals & Executive Identity */}
+                        <div className="col-lg-5">
+                          <div style={{ background: "rgba(18, 12, 36, 0.6)", border: "1px solid rgba(121, 40, 202, 0.3)", borderRadius: "16px", padding: "22px", height: "100%" }}>
+                            <h4 style={{ fontSize: "15px", fontWeight: "700", color: "#00dfd8", marginBottom: "16px", display: "flex", alignItems: "center", gap: "8px" }}>
+                              <i className="bi bi-person-bounding-box"></i> Executive Portrait &amp; Identity
+                            </h4>
+
+                            <div style={{ textAlign: "center", marginBottom: "18px" }}>
+                              <div style={{ width: "160px", height: "160px", margin: "0 auto 12px", borderRadius: "20px", overflow: "hidden", border: "2px solid #00dfd8", boxShadow: "0 10px 30px rgba(0, 223, 216, 0.3)", background: "#0e081f" }}>
+                                <img
+                                  src={ceoProfile.image || "/assets/img/founder/dhanesh-joshi.png"}
+                                  alt="CEO Preview"
+                                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                                />
+                              </div>
+                              <span style={{ fontSize: "12px", color: "#94a3b8" }}>Live Avatar Preview</span>
+                            </div>
+
+                            <div className="mb-3">
+                              <label style={{ fontSize: "12px", color: "#94a3b8", marginBottom: "4px" }}>Profile Photo URL</label>
+                              <input
+                                type="text"
+                                className="form-control"
+                                value={ceoProfile.image || ""}
+                                onChange={(e) => setCeoProfile({ ...ceoProfile, image: e.target.value })}
+                                style={{ background: "#0e081f", border: "1px solid rgba(121, 40, 202, 0.3)", color: "#fff" }}
+                              />
+                            </div>
+
+                            <div className="mb-3">
+                              <label style={{ fontSize: "12px", color: "#94a3b8", marginBottom: "4px" }}>Full Name</label>
+                              <input
+                                type="text"
+                                required
+                                className="form-control"
+                                value={ceoProfile.name || ""}
+                                onChange={(e) => setCeoProfile({ ...ceoProfile, name: e.target.value })}
+                                style={{ background: "#0e081f", border: "1px solid rgba(121, 40, 202, 0.3)", color: "#fff" }}
+                              />
+                            </div>
+
+                            <div className="row g-2 mb-3">
+                              <div className="col-6">
+                                <label style={{ fontSize: "12px", color: "#94a3b8", marginBottom: "4px" }}>Designation</label>
+                                <input
+                                  type="text"
+                                  className="form-control"
+                                  value={ceoProfile.designation || ""}
+                                  onChange={(e) => setCeoProfile({ ...ceoProfile, designation: e.target.value })}
+                                  style={{ background: "#0e081f", border: "1px solid rgba(121, 40, 202, 0.3)", color: "#fff" }}
+                                />
+                              </div>
+                              <div className="col-6">
+                                <label style={{ fontSize: "12px", color: "#94a3b8", marginBottom: "4px" }}>Company</label>
+                                <input
+                                  type="text"
+                                  className="form-control"
+                                  value={ceoProfile.company || ""}
+                                  onChange={(e) => setCeoProfile({ ...ceoProfile, company: e.target.value })}
+                                  style={{ background: "#0e081f", border: "1px solid rgba(121, 40, 202, 0.3)", color: "#fff" }}
+                                />
+                              </div>
+                            </div>
+
+                            <div className="mb-3">
+                              <label style={{ fontSize: "12px", color: "#94a3b8", marginBottom: "4px" }}>Operating Location</label>
+                              <input
+                                type="text"
+                                className="form-control"
+                                value={ceoProfile.location || ""}
+                                onChange={(e) => setCeoProfile({ ...ceoProfile, location: e.target.value })}
+                                style={{ background: "#0e081f", border: "1px solid rgba(121, 40, 202, 0.3)", color: "#fff" }}
+                              />
+                            </div>
+
+                            <div>
+                              <label style={{ fontSize: "12px", color: "#94a3b8", marginBottom: "4px" }}>Professional Headline</label>
+                              <input
+                                type="text"
+                                className="form-control"
+                                value={ceoProfile.headline || ""}
+                                onChange={(e) => setCeoProfile({ ...ceoProfile, headline: e.target.value })}
+                                style={{ background: "#0e081f", border: "1px solid rgba(121, 40, 202, 0.3)", color: "#fff" }}
+                              />
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* 2. Vision, Bio Narrative & Credly Badges */}
+                        <div className="col-lg-7">
+                          <div style={{ background: "rgba(18, 12, 36, 0.6)", border: "1px solid rgba(121, 40, 202, 0.3)", borderRadius: "16px", padding: "22px", height: "100%" }}>
+                            <h4 style={{ fontSize: "15px", fontWeight: "700", color: "#00dfd8", marginBottom: "16px", display: "flex", alignItems: "center", gap: "8px" }}>
+                              <i className="bi bi-chat-left-quote"></i> Vision Quote &amp; Leadership Narrative
+                            </h4>
+
+                            <div className="mb-3">
+                              <label style={{ fontSize: "12px", color: "#94a3b8", marginBottom: "4px" }}>Executive Vision Statement</label>
+                              <textarea
+                                rows={3}
+                                className="form-control"
+                                value={ceoProfile.visionQuote || ""}
+                                onChange={(e) => setCeoProfile({ ...ceoProfile, visionQuote: e.target.value })}
+                                style={{ background: "#0e081f", border: "1px solid rgba(121, 40, 202, 0.3)", color: "#fff", fontSize: "13.5px" }}
+                              />
+                            </div>
+
+                            <div className="row g-2 mb-3">
+                              <div className="col-6">
+                                <label style={{ fontSize: "12px", color: "#94a3b8", marginBottom: "4px" }}>Quote Author</label>
+                                <input
+                                  type="text"
+                                  className="form-control"
+                                  value={ceoProfile.quoteAuthor || ""}
+                                  onChange={(e) => setCeoProfile({ ...ceoProfile, quoteAuthor: e.target.value })}
+                                  style={{ background: "#0e081f", border: "1px solid rgba(121, 40, 202, 0.3)", color: "#fff" }}
+                                />
+                              </div>
+                              <div className="col-6">
+                                <label style={{ fontSize: "12px", color: "#94a3b8", marginBottom: "4px" }}>Author Title</label>
+                                <input
+                                  type="text"
+                                  className="form-control"
+                                  value={ceoProfile.quoteAuthorTitle || ""}
+                                  onChange={(e) => setCeoProfile({ ...ceoProfile, quoteAuthorTitle: e.target.value })}
+                                  style={{ background: "#0e081f", border: "1px solid rgba(121, 40, 202, 0.3)", color: "#fff" }}
+                                />
+                              </div>
+                            </div>
+
+                            <div className="mb-4">
+                              <label style={{ fontSize: "12px", color: "#94a3b8", marginBottom: "4px" }}>Executive Bio Narrative (Full Story)</label>
+                              <textarea
+                                rows={4}
+                                className="form-control"
+                                value={ceoProfile.bio || ""}
+                                onChange={(e) => setCeoProfile({ ...ceoProfile, bio: e.target.value })}
+                                style={{ background: "#0e081f", border: "1px solid rgba(121, 40, 202, 0.3)", color: "#fff", fontSize: "13.5px", lineHeight: "1.6" }}
+                              />
+                            </div>
+
+                            {/* Official Credly Badge & LinkedIn Certifications */}
+                            <h4 style={{ fontSize: "14px", fontWeight: "700", color: "#00ed64", marginBottom: "14px", display: "flex", alignItems: "center", gap: "8px" }}>
+                              <i className="bi bi-patch-check-fill"></i> Credly &amp; LinkedIn Verification Links
+                            </h4>
+
+                            <div className="row g-3">
+                              <div className="col-md-7">
+                                <label style={{ fontSize: "12px", color: "#94a3b8", marginBottom: "4px" }}>Official Credly Badge Verification URL</label>
+                                <input
+                                  type="text"
+                                  className="form-control"
+                                  value={ceoProfile.credlyBadgeUrl || ""}
+                                  onChange={(e) => setCeoProfile({ ...ceoProfile, credlyBadgeUrl: e.target.value })}
+                                  style={{ background: "#0e081f", border: "1px solid rgba(0, 237, 100, 0.3)", color: "#fff" }}
+                                />
+                              </div>
+                              <div className="col-md-5">
+                                <label style={{ fontSize: "12px", color: "#94a3b8", marginBottom: "4px" }}>Credly Badge Image Path</label>
+                                <input
+                                  type="text"
+                                  className="form-control"
+                                  value={ceoProfile.credlyImg || ""}
+                                  onChange={(e) => setCeoProfile({ ...ceoProfile, credlyImg: e.target.value })}
+                                  style={{ background: "#0e081f", border: "1px solid rgba(0, 237, 100, 0.3)", color: "#fff" }}
+                                />
+                              </div>
+
+                              <div className="col-12">
+                                <label style={{ fontSize: "12px", color: "#94a3b8", marginBottom: "4px" }}>LinkedIn Certifications Directory URL</label>
+                                <input
+                                  type="text"
+                                  className="form-control"
+                                  value={ceoProfile.linkedinCertificationsUrl || ""}
+                                  onChange={(e) => setCeoProfile({ ...ceoProfile, linkedinCertificationsUrl: e.target.value })}
+                                  style={{ background: "#0e081f", border: "1px solid rgba(0, 119, 181, 0.3)", color: "#fff" }}
+                                />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* 3. Social & Booking Channels */}
+                        <div className="col-12">
+                          <div style={{ background: "rgba(18, 12, 36, 0.6)", border: "1px solid rgba(121, 40, 202, 0.3)", borderRadius: "16px", padding: "22px" }}>
+                            <h4 style={{ fontSize: "15px", fontWeight: "700", color: "#00dfd8", marginBottom: "16px", display: "flex", alignItems: "center", gap: "8px" }}>
+                              <i className="bi bi-link-45deg"></i> Executive Social Profiles &amp; Booking Integrations
+                            </h4>
+
+                            <div className="row g-3">
+                              <div className="col-md-3">
+                                <label style={{ fontSize: "12px", color: "#94a3b8", marginBottom: "4px" }}>LinkedIn Profile</label>
+                                <input
+                                  type="text"
+                                  className="form-control"
+                                  value={ceoProfile.socialLinks?.linkedin || ""}
+                                  onChange={(e) => setCeoProfile({ ...ceoProfile, socialLinks: { ...ceoProfile.socialLinks, linkedin: e.target.value } })}
+                                  style={{ background: "#0e081f", border: "1px solid rgba(121, 40, 202, 0.3)", color: "#fff" }}
+                                />
+                              </div>
+                              <div className="col-md-3">
+                                <label style={{ fontSize: "12px", color: "#94a3b8", marginBottom: "4px" }}>GitHub Profile</label>
+                                <input
+                                  type="text"
+                                  className="form-control"
+                                  value={ceoProfile.socialLinks?.github || ""}
+                                  onChange={(e) => setCeoProfile({ ...ceoProfile, socialLinks: { ...ceoProfile.socialLinks, github: e.target.value } })}
+                                  style={{ background: "#0e081f", border: "1px solid rgba(121, 40, 202, 0.3)", color: "#fff" }}
+                                />
+                              </div>
+                              <div className="col-md-3">
+                                <label style={{ fontSize: "12px", color: "#94a3b8", marginBottom: "4px" }}>Instagram Profile</label>
+                                <input
+                                  type="text"
+                                  className="form-control"
+                                  value={ceoProfile.socialLinks?.instagram || ""}
+                                  onChange={(e) => setCeoProfile({ ...ceoProfile, socialLinks: { ...ceoProfile.socialLinks, instagram: e.target.value } })}
+                                  style={{ background: "#0e081f", border: "1px solid rgba(121, 40, 202, 0.3)", color: "#fff" }}
+                                />
+                              </div>
+                              <div className="col-md-3">
+                                <label style={{ fontSize: "12px", color: "#00dfd8", marginBottom: "4px" }}>Cal.com 1-on-1 Strategy Call</label>
+                                <input
+                                  type="text"
+                                  className="form-control"
+                                  value={ceoProfile.socialLinks?.cal || ""}
+                                  onChange={(e) => setCeoProfile({ ...ceoProfile, socialLinks: { ...ceoProfile.socialLinks, cal: e.target.value } })}
+                                  style={{ background: "#0e081f", border: "1px solid rgba(0, 223, 216, 0.4)", color: "#fff" }}
+                                />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* 4. Live Impact Metrics (4 Pods) */}
+                        <div className="col-12">
+                          <div style={{ background: "rgba(18, 12, 36, 0.6)", border: "1px solid rgba(121, 40, 202, 0.3)", borderRadius: "16px", padding: "22px" }}>
+                            <h4 style={{ fontSize: "15px", fontWeight: "700", color: "#00dfd8", marginBottom: "16px", display: "flex", alignItems: "center", gap: "8px" }}>
+                              <i className="bi bi-speedometer2"></i> Live Impact Metrics Pods (Homepage Counter)
+                            </h4>
+
+                            <div className="row g-3">
+                              {(ceoProfile.metrics || []).map((m, idx) => (
+                                <div key={idx} className="col-md-3">
+                                  <div style={{ background: "rgba(255, 255, 255, 0.03)", border: "1px solid rgba(121, 40, 202, 0.25)", borderRadius: "12px", padding: "14px" }}>
+                                    <span style={{ fontSize: "11px", color: "#00dfd8", fontWeight: "700" }}>Metric Pod #{idx + 1}</span>
+                                    <div className="mt-2 mb-2">
+                                      <label style={{ fontSize: "11px", color: "#94a3b8" }}>Value (e.g. 150+)</label>
+                                      <input
+                                        type="text"
+                                        className="form-control form-control-sm"
+                                        value={m.value || ""}
+                                        onChange={(e) => {
+                                          const next = [...ceoProfile.metrics];
+                                          next[idx] = { ...next[idx], value: e.target.value };
+                                          setCeoProfile({ ...ceoProfile, metrics: next });
+                                        }}
+                                        style={{ background: "#0e081f", border: "1px solid rgba(121, 40, 202, 0.3)", color: "#fff" }}
+                                      />
+                                    </div>
+                                    <div className="mb-2">
+                                      <label style={{ fontSize: "11px", color: "#94a3b8" }}>Label</label>
+                                      <input
+                                        type="text"
+                                        className="form-control form-control-sm"
+                                        value={m.label || ""}
+                                        onChange={(e) => {
+                                          const next = [...ceoProfile.metrics];
+                                          next[idx] = { ...next[idx], label: e.target.value };
+                                          setCeoProfile({ ...ceoProfile, metrics: next });
+                                        }}
+                                        style={{ background: "#0e081f", border: "1px solid rgba(121, 40, 202, 0.3)", color: "#fff" }}
+                                      />
+                                    </div>
+                                    <div>
+                                      <label style={{ fontSize: "11px", color: "#94a3b8" }}>Subtext</label>
+                                      <input
+                                        type="text"
+                                        className="form-control form-control-sm"
+                                        value={m.subtext || ""}
+                                        onChange={(e) => {
+                                          const next = [...ceoProfile.metrics];
+                                          next[idx] = { ...next[idx], subtext: e.target.value };
+                                          setCeoProfile({ ...ceoProfile, metrics: next });
+                                        }}
+                                        style={{ background: "#0e081f", border: "1px solid rgba(121, 40, 202, 0.3)", color: "#fff" }}
+                                      />
+                                    </div>
+                                  </div>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* 5. Certifications & Badges Manager */}
+                        <div className="col-12">
+                          <div style={{ background: "rgba(18, 12, 36, 0.6)", border: "1px solid rgba(121, 40, 202, 0.3)", borderRadius: "16px", padding: "22px" }}>
+                            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "16px", flexWrap: "wrap", gap: "10px" }}>
+                              <h4 style={{ fontSize: "15px", fontWeight: "700", color: "#00dfd8", margin: 0, display: "flex", alignItems: "center", gap: "8px" }}>
+                                <i className="bi bi-award-fill"></i> Professional Certifications &amp; Licenses ({(ceoProfile.certifications || []).length})
+                              </h4>
+
+                              <button
+                                type="button"
+                                onClick={() => {
+                                  const newCert = {
+                                    title: "New Certified Credential",
+                                    issuer: "Issuing Organization",
+                                    issuedTo: ceoProfile.name || "Dhanesh Joshi",
+                                    code: "CERT-ID-1234",
+                                    verifyUrl: ceoProfile.linkedinCertificationsUrl || "https://www.linkedin.com/in/dhanesh-joshi/details/certifications/",
+                                    color: "#00DFD8",
+                                    badge: "Professional License",
+                                    description: "Describe competencies and scope of this verified engineering credential."
+                                  };
+                                  setCeoProfile({
+                                    ...ceoProfile,
+                                    certifications: [...(ceoProfile.certifications || []), newCert]
+                                  });
+                                }}
+                                style={{
+                                  background: "rgba(0, 223, 216, 0.15)",
+                                  border: "1px solid #00dfd8",
+                                  color: "#00dfd8",
+                                  padding: "6px 14px",
+                                  borderRadius: "8px",
+                                  fontSize: "12px",
+                                  fontWeight: "700",
+                                  cursor: "pointer"
+                                }}
+                              >
+                                + Add Another Certification
+                              </button>
+                            </div>
+
+                            <div className="d-flex flex-column gap-3">
+                              {(ceoProfile.certifications || []).map((cert, cIdx) => (
+                                <div key={cIdx} style={{ background: "rgba(255, 255, 255, 0.02)", border: "1px solid rgba(255, 255, 255, 0.08)", borderRadius: "12px", padding: "16px" }}>
+                                  <div className="row g-2 align-items-center">
+                                    <div className="col-md-3">
+                                      <label style={{ fontSize: "11px", color: "#94a3b8" }}>Title</label>
+                                      <input
+                                        type="text"
+                                        className="form-control form-control-sm"
+                                        value={cert.title || ""}
+                                        onChange={(e) => {
+                                          const next = [...ceoProfile.certifications];
+                                          next[cIdx] = { ...next[cIdx], title: e.target.value };
+                                          setCeoProfile({ ...ceoProfile, certifications: next });
+                                        }}
+                                        style={{ background: "#0e081f", border: "1px solid rgba(121, 40, 202, 0.3)", color: "#fff" }}
+                                      />
+                                    </div>
+                                    <div className="col-md-2">
+                                      <label style={{ fontSize: "11px", color: "#94a3b8" }}>Issuer</label>
+                                      <input
+                                        type="text"
+                                        className="form-control form-control-sm"
+                                        value={cert.issuer || ""}
+                                        onChange={(e) => {
+                                          const next = [...ceoProfile.certifications];
+                                          next[cIdx] = { ...next[cIdx], issuer: e.target.value };
+                                          setCeoProfile({ ...ceoProfile, certifications: next });
+                                        }}
+                                        style={{ background: "#0e081f", border: "1px solid rgba(121, 40, 202, 0.3)", color: "#fff" }}
+                                      />
+                                    </div>
+                                    <div className="col-md-2">
+                                      <label style={{ fontSize: "11px", color: "#94a3b8" }}>Code / ID</label>
+                                      <input
+                                        type="text"
+                                        className="form-control form-control-sm"
+                                        value={cert.code || ""}
+                                        onChange={(e) => {
+                                          const next = [...ceoProfile.certifications];
+                                          next[cIdx] = { ...next[cIdx], code: e.target.value };
+                                          setCeoProfile({ ...ceoProfile, certifications: next });
+                                        }}
+                                        style={{ background: "#0e081f", border: "1px solid rgba(121, 40, 202, 0.3)", color: "#fff" }}
+                                      />
+                                    </div>
+                                    <div className="col-md-4">
+                                      <label style={{ fontSize: "11px", color: "#94a3b8" }}>Verification URL</label>
+                                      <input
+                                        type="text"
+                                        className="form-control form-control-sm"
+                                        value={cert.verifyUrl || ""}
+                                        onChange={(e) => {
+                                          const next = [...ceoProfile.certifications];
+                                          next[cIdx] = { ...next[cIdx], verifyUrl: e.target.value };
+                                          setCeoProfile({ ...ceoProfile, certifications: next });
+                                        }}
+                                        style={{ background: "#0e081f", border: "1px solid rgba(121, 40, 202, 0.3)", color: "#fff" }}
+                                      />
+                                    </div>
+                                    <div className="col-md-1 text-end">
+                                      <button
+                                        type="button"
+                                        onClick={() => {
+                                          const next = ceoProfile.certifications.filter((_, i) => i !== cIdx);
+                                          setCeoProfile({ ...ceoProfile, certifications: next });
+                                        }}
+                                        style={{ background: "rgba(239, 68, 68, 0.15)", border: "1px solid rgba(239, 68, 68, 0.3)", color: "#ef4444", borderRadius: "6px", padding: "4px 8px", fontSize: "11px", cursor: "pointer" }}
+                                        title="Remove Certification"
+                                      >
+                                        <i className="bi bi-trash"></i>
+                                      </button>
+                                    </div>
+                                    <div className="col-12 mt-1">
+                                      <label style={{ fontSize: "11px", color: "#94a3b8" }}>Credential Scope / Description</label>
+                                      <input
+                                        type="text"
+                                        className="form-control form-control-sm"
+                                        value={cert.description || ""}
+                                        onChange={(e) => {
+                                          const next = [...ceoProfile.certifications];
+                                          next[cIdx] = { ...next[cIdx], description: e.target.value };
+                                          setCeoProfile({ ...ceoProfile, certifications: next });
+                                        }}
+                                        style={{ background: "#0e081f", border: "1px solid rgba(121, 40, 202, 0.2)", color: "#cbd5e1" }}
+                                      />
+                                    </div>
+                                  </div>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Save Trigger Button */}
+                        <div className="col-12 text-end">
+                          <button
+                            type="submit"
+                            disabled={saving}
+                            style={{
+                              background: "linear-gradient(135deg, #00DFD8 0%, #7928CA 100%)",
+                              border: "none",
+                              color: "#fff",
+                              padding: "12px 36px",
+                              borderRadius: "12px",
+                              fontSize: "15px",
+                              fontWeight: "800",
+                              cursor: "pointer",
+                              boxShadow: "0 8px 25px rgba(0, 223, 216, 0.4)"
+                            }}
+                          >
+                            <i className="bi bi-cloud-arrow-up-fill me-2"></i>
+                            <span>{saving ? "Updating MongoDB..." : "Save CEO & Founder Profile to MongoDB"}</span>
                           </button>
                         </div>
                       </div>

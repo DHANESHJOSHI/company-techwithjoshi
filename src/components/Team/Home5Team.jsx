@@ -138,11 +138,23 @@ function Home5Team() {
               name: founder.name || prev.name,
               designation: founder.designation || prev.designation,
               company: founder.company || prev.company,
+              location: founder.location || prev.location || "Gujarat, India • Global Operations",
+              bio: founder.bio || prev.bio,
+              visionQuote: founder.visionQuote || prev.visionQuote,
+              quoteAuthor: founder.quoteAuthor || prev.quoteAuthor,
+              quoteAuthorTitle: founder.quoteAuthorTitle || prev.quoteAuthorTitle,
               image: founder.image?.startsWith("/") ? founder.image : (founder.image ? `/${founder.image}` : prev.image),
               linkedin: socials?.linkedin || prev.linkedin,
               github: socials?.github || prev.github,
               instagram: socials?.instagram || prev.instagram,
-              cal: socials?.cal || prev.cal
+              cal: socials?.cal || prev.cal,
+              credlyBadge: founder.credlyBadgeUrl || prev.credlyBadge,
+              credlyImg: founder.credlyImg || prev.credlyImg,
+              linkedinCerts: founder.linkedinCertificationsUrl || prev.linkedinCerts,
+              metrics: Array.isArray(founder.metrics) && founder.metrics.length > 0 ? founder.metrics : prev.metrics || METRICS,
+              certifications: Array.isArray(founder.certifications) && founder.certifications.length > 0 ? founder.certifications : prev.certifications || CERTIFICATIONS,
+              skillDomains: Array.isArray(founder.skillDomains) && founder.skillDomains.length > 0 ? founder.skillDomains : prev.skillDomains || SKILL_DOMAINS,
+              techBadges: Array.isArray(founder.techBadges) && founder.techBadges.length > 0 ? founder.techBadges : prev.techBadges || TECH_BADGES
             }));
           }
         }
@@ -469,7 +481,7 @@ function Home5Team() {
                   className={`tab-switch-btn ${activeTab === "certifications" ? "active" : ""}`}
                 >
                   <i className="bi bi-award-fill me-2" />
-                  <span>Certifications &amp; Badges ({CERTIFICATIONS.length})</span>
+                  <span>Certifications &amp; Badges ({(founderData.certifications || CERTIFICATIONS).length})</span>
                 </button>
 
                 <button
@@ -491,20 +503,20 @@ function Home5Team() {
                     <div className="vision-quote-card mb-4 p-3 p-md-4">
                       <div className="quote-mark text-info">“</div>
                       <p className="quote-text mb-0">
-                        Architecture is not merely about writing clean syntax; it is about engineering resilient digital nervous systems that effortlessly survive traffic spikes, failovers, and autonomous AI automation at global scale.
+                        {founderData.visionQuote || "Architecture is not merely about writing clean syntax; it is about engineering resilient digital nervous systems that effortlessly survive traffic spikes, failovers, and autonomous AI automation at global scale."}
                       </p>
                       <div className="quote-author mt-2 text-white-50 small">
-                        — <strong>Dhanesh Joshi</strong>, CEO &amp; Principal Architect
+                        — <strong>{founderData.quoteAuthor || "Dhanesh Joshi"}</strong>, {founderData.quoteAuthorTitle || "CEO & Principal Architect"}
                       </div>
                     </div>
 
                     {/* Impact Metrics Grid */}
                     <div className="row g-3 mb-4">
-                      {METRICS.map((m, idx) => (
+                      {(founderData.metrics || METRICS).map((m, idx) => (
                         <div key={idx} className="col-6 col-sm-3">
                           <div className="metric-pod p-3 text-center h-100">
                             <div className="metric-icon-wrap mb-2">
-                              <i className={`bi ${m.icon} text-info`} />
+                              <i className={`bi ${m.icon || "bi-star-fill"} text-info`} />
                             </div>
                             <div className="metric-val">{m.value}</div>
                             <div className="metric-lbl">{m.label}</div>
@@ -516,7 +528,7 @@ function Home5Team() {
 
                     {/* Executive Bio Narrative */}
                     <p style={{ color: "#CBD5E1", fontSize: "15px", lineHeight: "1.8", marginBottom: "24px" }}>
-                      As Founder &amp; CEO of <strong>TechWithJoshi Private Limited</strong>, Dhanesh leads high-stakes engineering initiatives across distributed Kubernetes clusters, native mobile apps, and LLM-powered autonomous agent pipelines. Under his direct architectural stewardship, TechWithJoshi has successfully delivered enterprise applications powering over 100,000+ monthly active users with an uncompromised 99.9% uptime track record.
+                      {founderData.bio || `As Founder & CEO of TechWithJoshi Private Limited, Dhanesh leads high-stakes engineering initiatives across distributed Kubernetes clusters, native mobile apps, and LLM-powered autonomous agent pipelines. Under his direct architectural stewardship, TechWithJoshi has successfully delivered enterprise applications powering over 100,000+ monthly active users with an uncompromised 99.9% uptime track record.`}
                     </p>
 
                     {/* CTAs */}
@@ -598,7 +610,7 @@ function Home5Team() {
 
                     {/* Certifications Grid */}
                     <div className="cert-grid d-flex flex-column gap-3 mb-4">
-                      {CERTIFICATIONS.map((cert, cIdx) => (
+                      {(founderData.certifications || CERTIFICATIONS).map((cert, cIdx) => (
                         <div
                           key={cIdx}
                           className="cert-card p-3 d-flex flex-wrap align-items-center justify-content-between gap-3"
@@ -635,10 +647,10 @@ function Home5Team() {
                                 className="cert-icon-box"
                                 style={{
                                   background: `rgba(${cert.color === "#FF9900" ? "255, 153, 0" : cert.color === "#00DFD8" ? "0, 223, 216" : cert.color === "#00ED64" ? "0, 237, 100" : "59, 130, 246"}, 0.15)`,
-                                  border: `1px solid ${cert.color}60`
+                                  border: `1px solid ${cert.color || "#00DFD8"}60`
                                 }}
                               >
-                                <i className={`bi ${cert.icon}`} style={{ color: cert.color, fontSize: "22px" }} />
+                                <i className={`bi ${cert.icon || "bi-patch-check-fill"}`} style={{ color: cert.color || "#00DFD8", fontSize: "22px" }} />
                               </div>
                             )}
 
@@ -662,7 +674,7 @@ function Home5Team() {
                                 )}
                               </div>
                               <div className="text-white-50 small mt-1">
-                                <span>{cert.issuer}</span> &bull; <span>Issued to: <strong className="text-white">{cert.issuedTo}</strong></span>
+                                <span>{cert.issuer}</span> &bull; <span>Issued to: <strong className="text-white">{cert.issuedTo || founderData.name}</strong></span>
                               </div>
                               <p className="mb-0 mt-1" style={{ fontSize: "12.5px", color: "#94a3b8" }}>
                                 {cert.description}
@@ -685,7 +697,7 @@ function Home5Team() {
                             </span>
 
                             <a
-                              href={cert.verifyUrl}
+                              href={cert.verifyUrl || founderData.linkedinCerts}
                               target="_blank"
                               rel="noopener noreferrer"
                               className="btn btn-sm d-inline-flex align-items-center gap-1"
@@ -719,14 +731,14 @@ function Home5Team() {
 
                     {/* Skill Progress Bars */}
                     <div className="skill-meter-list mb-4">
-                      {SKILL_DOMAINS.map((skill, sIdx) => (
+                      {(founderData.skillDomains || SKILL_DOMAINS).map((skill, sIdx) => (
                         <div key={sIdx} className="mb-3">
                           <div className="d-flex justify-content-between align-items-center mb-1">
                             <span className="text-white fw-semibold small d-flex align-items-center gap-2">
-                              <i className={`bi ${skill.icon}`} style={{ color: skill.color }} />
+                              <i className={`bi ${skill.icon || "bi-cpu"}`} style={{ color: skill.color || "#00DFD8" }} />
                               {skill.name}
                             </span>
-                            <span style={{ color: skill.color, fontSize: "13px", fontWeight: "700" }}>
+                            <span style={{ color: skill.color || "#00DFD8", fontSize: "13px", fontWeight: "700" }}>
                               {skill.level}%
                             </span>
                           </div>
@@ -743,7 +755,7 @@ function Home5Team() {
                               className="progress-bar"
                               style={{
                                 width: `${skill.level}%`,
-                                background: `linear-gradient(90deg, #7928CA 0%, ${skill.color} 100%)`,
+                                background: `linear-gradient(90deg, #7928CA 0%, ${skill.color || "#00DFD8"} 100%)`,
                                 borderRadius: "10px",
                                 transition: "width 0.8s ease"
                               }}
@@ -759,7 +771,7 @@ function Home5Team() {
                         DEPLOYED PRODUCTION TOOLING:
                       </div>
                       <div className="d-flex flex-wrap gap-2">
-                        {TECH_BADGES.map((t, idx) => (
+                        {(founderData.techBadges || TECH_BADGES).map((t, idx) => (
                           <span key={idx} className="tech-badge-chip">
                             {t}
                           </span>
