@@ -4,9 +4,24 @@ import gsap from "gsap";
 
 const CERTIFICATIONS = [
   {
+    title: "MongoDB Associate Developer",
+    issuer: "MongoDB Inc.",
+    issuedTo: "JOSHI DHANESH B.",
+    code: "Credly ID: b02cb041",
+    verifyUrl: "https://www.credly.com/badges/b02cb041-67bd-487d-b261-7b7318a89f36/linked_in?t=sr9p06",
+    badgeImg: "/assets/img/founder/mongodb-associate-developer-badge.png",
+    icon: "bi-database-fill-check",
+    color: "#00ED64", // MongoDB Emerald Green
+    badge: "Official Credly Certified",
+    isFeaturedCredly: true,
+    description: "Earners demonstrate in-depth knowledge of building scalable database applications with MongoDB, schema optimization, aggregation pipelines, and high-concurrency data storage."
+  },
+  {
     title: "AWS Certified Solutions Architect",
     issuer: "Amazon Web Services",
+    issuedTo: "Dhanesh Joshi",
     code: "AWS-SAA-C03",
+    verifyUrl: "https://www.linkedin.com/in/dhanesh-joshi/details/certifications/",
     icon: "bi-shield-check",
     color: "#FF9900",
     badge: "Cloud Architecture",
@@ -15,7 +30,9 @@ const CERTIFICATIONS = [
   {
     title: "Certified Kubernetes Administrator (CKA)",
     issuer: "Linux Foundation / CNCF",
+    issuedTo: "Dhanesh Joshi",
     code: "CNCF-CKA-7821",
+    verifyUrl: "https://www.linkedin.com/in/dhanesh-joshi/details/certifications/",
     icon: "bi-boxes",
     color: "#326CE5",
     badge: "DevOps & Containers",
@@ -25,6 +42,7 @@ const CERTIFICATIONS = [
     title: "Meta Certified Full-Stack Software Engineer",
     issuer: "Meta / Coursera Professional",
     code: "META-FS-9912",
+    verifyUrl: "https://www.linkedin.com/in/dhanesh-joshi/details/certifications/",
     icon: "bi-patch-check-fill",
     color: "#0668E1",
     badge: "Full-Stack Core",
@@ -34,6 +52,7 @@ const CERTIFICATIONS = [
     title: "Google Cloud Professional Cloud Architect",
     issuer: "Google Cloud Platform",
     code: "GCP-PCA-4418",
+    verifyUrl: "https://www.linkedin.com/in/dhanesh-joshi/details/certifications/",
     icon: "bi-cloud-check-fill",
     color: "#4285F4",
     badge: "Enterprise GCP",
@@ -43,6 +62,7 @@ const CERTIFICATIONS = [
     title: "Generative AI Engineering Specialist",
     issuer: "DeepLearning.AI",
     code: "GENAI-DL-3304",
+    verifyUrl: "https://www.linkedin.com/in/dhanesh-joshi/details/certifications/",
     icon: "bi-cpu-fill",
     color: "#00DFD8",
     badge: "AI & LLM Workflows",
@@ -58,7 +78,8 @@ const METRICS = [
 ];
 
 const SKILL_DOMAINS = [
-  { name: "Next.js 14, React & WebGL (GSAP)", level: 98, icon: "bi-browser-chrome", color: "#00DFD8" },
+  { name: "MongoDB & Distributed DBs (Mongoose, Aggregations)", level: 99, icon: "bi-database-fill-check", color: "#00ED64" },
+  { name: "Next.js 14, React & WebGL (GSAP Motion)", level: 98, icon: "bi-browser-chrome", color: "#00DFD8" },
   { name: "Distributed Microservices (Go, Node, Python)", level: 96, icon: "bi-diagram-3-fill", color: "#7928CA" },
   { name: "Cloud & Kubernetes (AWS, GCP, EKS, Docker)", level: 95, icon: "bi-cloud-fill", color: "#3B82F6" },
   { name: "Autonomous AI Agents & Vector RAG (Groq, vLLM)", level: 94, icon: "bi-robot", color: "#F59E0B" },
@@ -66,7 +87,7 @@ const SKILL_DOMAINS = [
 ];
 
 const TECH_BADGES = [
-  "Next.js 14", "React", "TypeScript", "Node.js", "Go", "Python",
+  "MongoDB", "Mongoose", "Next.js 14", "React", "TypeScript", "Node.js", "Go", "Python",
   "Flutter", "Kubernetes", "Docker", "PostgreSQL", "Apache Kafka",
   "Redis Streams", "Pinecone / Milvus", "GraphQL", "AWS Lambda",
   "GCP Cloud Run", "GSAP Motion", "Tailwind CSS", "Debezium CDC"
@@ -80,6 +101,9 @@ function Home5Team() {
     company: "TechWithJoshi Private Limited",
     image: "/assets/img/founder/dhanesh-joshi.png",
     linkedin: "https://www.linkedin.com/in/dhanesh-joshi/",
+    linkedinCerts: "https://www.linkedin.com/in/dhanesh-joshi/details/certifications/",
+    credlyBadge: "https://www.credly.com/badges/b02cb041-67bd-487d-b261-7b7318a89f36/linked_in?t=sr9p06",
+    credlyImg: "/assets/img/founder/mongodb-associate-developer-badge.png",
     github: "https://github.com/DHANESHJOSHI",
     instagram: "https://www.instagram.com/its_dhanesh_joshi_/",
     cal: "https://cal.com/dhanesh-joshi/30min"
@@ -135,7 +159,6 @@ function Home5Team() {
     if (!sectionRef.current) return;
 
     const ctx = gsap.context(() => {
-      // Floating bobbing effect for HUD badges
       if (hudBadge1Ref.current) {
         gsap.to(hudBadge1Ref.current, {
           y: -10,
@@ -158,7 +181,6 @@ function Home5Team() {
         });
       }
 
-      // Continuous subtle rotation for the holographic HUD ring
       if (hudRingRef.current) {
         gsap.to(hudRingRef.current, {
           rotation: 360,
@@ -323,7 +345,7 @@ function Home5Team() {
                 ref={avatarCardRef}
                 onMouseMove={handleMouseMove}
                 onMouseLeave={handleMouseLeave}
-                className="interactive-avatar-stage position-relative mx-auto mb-4"
+                className="interactive-avatar-stage position-relative mx-auto mb-3"
                 style={{
                   maxWidth: "340px",
                   cursor: "pointer",
@@ -360,6 +382,39 @@ function Home5Team() {
                   <span className="live-dot" />
                   <span>ACTIVE ARCHITECT</span>
                 </div>
+              </div>
+
+              {/* Verified Credly Badge Direct Showcase */}
+              <div className="mx-auto mb-3" style={{ maxWidth: "340px" }}>
+                <a
+                  href={founderData.credlyBadge}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="credly-showcase-bar d-flex align-items-center justify-content-between p-2 px-3 text-decoration-none"
+                  style={{
+                    background: "rgba(0, 237, 100, 0.08)",
+                    border: "1px solid rgba(0, 237, 100, 0.4)",
+                    borderRadius: "14px",
+                    transition: "all 0.25s ease"
+                  }}
+                >
+                  <div className="d-flex align-items-center gap-2">
+                    <img
+                      src={founderData.credlyImg}
+                      alt="MongoDB Associate Developer"
+                      style={{ width: "36px", height: "auto", borderRadius: "4px" }}
+                    />
+                    <div className="text-start">
+                      <div style={{ color: "#00ED64", fontSize: "10.5px", fontWeight: "800", letterSpacing: "0.5px" }}>
+                        OFFICIAL CREDLY BADGE
+                      </div>
+                      <div style={{ color: "#F1F5F9", fontSize: "12px", fontWeight: "700", lineHeight: "1.2" }}>
+                        MongoDB Associate Developer
+                      </div>
+                    </div>
+                  </div>
+                  <i className="bi bi-box-arrow-up-right" style={{ color: "#00ED64", fontSize: "14px" }} />
+                </a>
               </div>
 
               {/* Founder Details Below Avatar */}
@@ -447,7 +502,7 @@ function Home5Team() {
                   className={`tab-switch-btn ${activeTab === "certifications" ? "active" : ""}`}
                 >
                   <i className="bi bi-award-fill me-2" />
-                  <span>Certifications ({CERTIFICATIONS.length})</span>
+                  <span>Certifications &amp; Badges ({CERTIFICATIONS.length})</span>
                 </button>
 
                 <button
@@ -519,37 +574,128 @@ function Home5Team() {
                   </div>
                 )}
 
-                {/* TAB 2: CERTIFICATIONS & CREDENTIALS */}
+                {/* TAB 2: CERTIFICATIONS & CREDENTIALS WITH CREDLY & LINKEDIN VERIFICATION */}
                 {activeTab === "certifications" && (
                   <div className="tab-pane-content">
-                    <div className="mb-3 d-flex align-items-center justify-content-between">
-                      <span className="text-white-50 small">
-                        Verified industry certifications and professional engineering licenses:
-                      </span>
-                      <span className="badge bg-success bg-opacity-25 text-success border border-success border-opacity-50">
-                        100% VERIFIED
-                      </span>
+                    {/* LinkedIn Live Verification Banner */}
+                    <div
+                      className="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-4 p-3 rounded-3"
+                      style={{
+                        background: "linear-gradient(135deg, rgba(0, 119, 181, 0.15) 0%, rgba(121, 40, 202, 0.1) 100%)",
+                        border: "1px solid rgba(0, 119, 181, 0.4)",
+                        borderRadius: "14px"
+                      }}
+                    >
+                      <div className="d-flex align-items-center gap-3">
+                        <div
+                          style={{
+                            width: "38px",
+                            height: "38px",
+                            borderRadius: "10px",
+                            background: "#0077b5",
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            color: "#fff",
+                            fontSize: "20px"
+                          }}
+                        >
+                          <i className="bx bxl-linkedin" />
+                        </div>
+                        <div>
+                          <div style={{ color: "#FFFFFF", fontSize: "14px", fontWeight: "700" }}>
+                            Official LinkedIn &amp; Credly Verified Credentials
+                          </div>
+                          <div style={{ color: "#94a3b8", fontSize: "12px" }}>
+                            All certifications are cryptographically verifiable on LinkedIn &amp; Credly
+                          </div>
+                        </div>
+                      </div>
+
+                      <a
+                        href={founderData.linkedinCerts}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="btn btn-sm text-white fw-bold px-3 py-2 d-inline-flex align-items-center gap-2"
+                        style={{
+                          background: "linear-gradient(135deg, #0077b5 0%, #005582 100%)",
+                          borderRadius: "8px",
+                          border: "none",
+                          fontSize: "13px"
+                        }}
+                      >
+                        <span>View on LinkedIn</span>
+                        <i className="bi bi-box-arrow-up-right" />
+                      </a>
                     </div>
 
+                    {/* Certifications Grid */}
                     <div className="cert-grid d-flex flex-column gap-3 mb-4">
                       {CERTIFICATIONS.map((cert, cIdx) => (
-                        <div key={cIdx} className="cert-card p-3 d-flex flex-wrap align-items-center justify-content-between gap-3">
+                        <div
+                          key={cIdx}
+                          className="cert-card p-3 d-flex flex-wrap align-items-center justify-content-between gap-3"
+                          style={{
+                            border: cert.isFeaturedCredly ? "1px solid rgba(0, 237, 100, 0.4)" : "1px solid rgba(255, 255, 255, 0.08)",
+                            background: cert.isFeaturedCredly ? "linear-gradient(135deg, rgba(0, 237, 100, 0.06) 0%, rgba(15, 10, 30, 0.8) 100%)" : "rgba(255, 255, 255, 0.02)"
+                          }}
+                        >
                           <div className="d-flex align-items-center gap-3">
-                            <div
-                              className="cert-icon-box"
-                              style={{
-                                background: `rgba(${cert.color === "#FF9900" ? "255, 153, 0" : cert.color === "#00DFD8" ? "0, 223, 216" : "59, 130, 246"}, 0.15)`,
-                                border: `1px solid ${cert.color}60`
-                              }}
-                            >
-                              <i className={`bi ${cert.icon}`} style={{ color: cert.color, fontSize: "22px" }} />
-                            </div>
+                            {cert.badgeImg ? (
+                              <div
+                                style={{
+                                  width: "56px",
+                                  height: "56px",
+                                  borderRadius: "12px",
+                                  background: "rgba(0,0,0,0.5)",
+                                  border: "1px solid rgba(0, 237, 100, 0.4)",
+                                  display: "flex",
+                                  alignItems: "center",
+                                  justifyContent: "center",
+                                  flexShrink: 0,
+                                  overflow: "hidden",
+                                  padding: "4px"
+                                }}
+                              >
+                                <img
+                                  src={cert.badgeImg}
+                                  alt={cert.title}
+                                  style={{ width: "100%", height: "auto", objectFit: "contain" }}
+                                />
+                              </div>
+                            ) : (
+                              <div
+                                className="cert-icon-box"
+                                style={{
+                                  background: `rgba(${cert.color === "#FF9900" ? "255, 153, 0" : cert.color === "#00DFD8" ? "0, 223, 216" : cert.color === "#00ED64" ? "0, 237, 100" : "59, 130, 246"}, 0.15)`,
+                                  border: `1px solid ${cert.color}60`
+                                }}
+                              >
+                                <i className={`bi ${cert.icon}`} style={{ color: cert.color, fontSize: "22px" }} />
+                              </div>
+                            )}
+
                             <div>
-                              <h5 className="text-white fw-bold mb-1" style={{ fontSize: "15.5px" }}>
-                                {cert.title}
-                              </h5>
-                              <div className="text-white-50 small">
-                                <span>{cert.issuer}</span> &bull; <span className="text-info">{cert.badge}</span>
+                              <div className="d-flex align-items-center gap-2">
+                                <h5 className="text-white fw-bold mb-0" style={{ fontSize: "15.5px" }}>
+                                  {cert.title}
+                                </h5>
+                                {cert.isFeaturedCredly && (
+                                  <span
+                                    className="badge"
+                                    style={{
+                                      background: "rgba(0, 237, 100, 0.2)",
+                                      color: "#00ED64",
+                                      border: "1px solid #00ED64",
+                                      fontSize: "10px"
+                                    }}
+                                  >
+                                    ★ Credly Verified
+                                  </span>
+                                )}
+                              </div>
+                              <div className="text-white-50 small mt-1">
+                                <span>{cert.issuer}</span> &bull; <span>Issued to: <strong className="text-white">{cert.issuedTo}</strong></span>
                               </div>
                               <p className="mb-0 mt-1" style={{ fontSize: "12.5px", color: "#94a3b8" }}>
                                 {cert.description}
@@ -557,34 +703,42 @@ function Home5Team() {
                             </div>
                           </div>
 
-                          <div className="cert-badge-box text-end">
+                          <div className="d-flex align-items-center gap-2">
                             <span
                               className="badge px-3 py-2"
                               style={{
-                                background: "rgba(0, 223, 216, 0.12)",
-                                color: "#00DFD8",
-                                border: "1px solid rgba(0, 223, 216, 0.35)",
-                                fontSize: "12px",
+                                background: cert.isFeaturedCredly ? "rgba(0, 237, 100, 0.12)" : "rgba(0, 223, 216, 0.12)",
+                                color: cert.isFeaturedCredly ? "#00ED64" : "#00DFD8",
+                                border: cert.isFeaturedCredly ? "1px solid rgba(0, 237, 100, 0.35)" : "1px solid rgba(0, 223, 216, 0.35)",
+                                fontSize: "11px",
                                 fontWeight: "700"
                               }}
                             >
                               {cert.code}
                             </span>
+
+                            <a
+                              href={cert.verifyUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="btn btn-sm d-inline-flex align-items-center gap-1"
+                              style={{
+                                background: cert.isFeaturedCredly ? "linear-gradient(135deg, #00ED64 0%, #00873D 100%)" : "rgba(255, 255, 255, 0.08)",
+                                color: cert.isFeaturedCredly ? "#000000" : "#ffffff",
+                                fontWeight: "700",
+                                fontSize: "12px",
+                                padding: "6px 12px",
+                                borderRadius: "8px",
+                                border: cert.isFeaturedCredly ? "none" : "1px solid rgba(255, 255, 255, 0.15)",
+                                textDecoration: "none"
+                              }}
+                            >
+                              <span>{cert.isFeaturedCredly ? "Verify Credly" : "Verify"}</span>
+                              <i className="bi bi-box-arrow-up-right" />
+                            </a>
                           </div>
                         </div>
                       ))}
-                    </div>
-
-                    <div className="text-center pt-1">
-                      <a
-                        href={founderData.linkedin}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="btn-glass-secondary d-inline-flex align-items-center gap-2"
-                      >
-                        <i className="bx bxl-linkedin text-info" />
-                        <span>Verify Credentials on Official LinkedIn Profile</span>
-                      </a>
                     </div>
                   </div>
                 )}
@@ -757,6 +911,14 @@ function Home5Team() {
           box-shadow: 0 0 8px #10b981;
         }
 
+        /* Credly Showcase Bar */
+        .credly-showcase-bar:hover {
+          background: rgba(0, 237, 100, 0.16) !important;
+          border-color: #00ed64 !important;
+          transform: translateY(-2px);
+          box-shadow: 0 8px 20px rgba(0, 237, 100, 0.2);
+        }
+
         /* Social Pill Buttons */
         .social-pill-btn {
           display: inline-flex;
@@ -909,20 +1071,16 @@ function Home5Team() {
 
         /* Certifications Grid */
         .cert-card {
-          background: rgba(255, 255, 255, 0.02);
-          border: 1px solid rgba(255, 255, 255, 0.07);
-          border-radius: 12px;
+          border-radius: 14px;
           transition: all 0.25s ease;
         }
         .cert-card:hover {
-          background: rgba(121, 40, 202, 0.08);
-          border-color: rgba(0, 223, 216, 0.35);
           transform: translateX(4px);
         }
         .cert-icon-box {
-          width: 44px;
-          height: 44px;
-          border-radius: 10px;
+          width: 50px;
+          height: 50px;
+          border-radius: 12px;
           display: flex;
           align-items: center;
           justify-content: center;
