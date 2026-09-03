@@ -30,27 +30,27 @@ function Award5() {
                 <tr>
                   <td data-label="Awwards">AWARDS / Site of the Day <img src="/assets/img/home-5/home5-award-01.svg" alt="Awwwards" /></td>
                   <td data-label="Project">Cascadia Creative</td>
-                  <td data-label="Year">2022</td>
+                  <td data-label="Year">2024</td>
                 </tr>
                 <tr>
                   <td data-label="Awwards">CSSDesignAwards / Design of the Year <img src="/assets/img/home-5/home5-award-02.svg" alt="CSS Design Awards" /></td>
                   <td data-label="Project">Oliver Agency</td>
-                  <td data-label="Year">2022</td>
+                  <td data-label="Year">2024</td>
                 </tr>
                 <tr>
                   <td data-label="Awwards">TheFWA / FWA of the Day <img src="/assets/img/home-5/home5-award-03.svg" alt="The FWA" /></td>
                   <td data-label="Project">Cortana Corporate</td>
-                  <td data-label="Year">2022</td>
+                  <td data-label="Year">2024</td>
                 </tr>
                 <tr>
                   <td data-label="Awwards">Behance / Web Design Served <img src="/assets/img/home-5/home5-award-04.svg" alt="Behance" /></td>
                   <td data-label="Project">Details Agency</td>
-                  <td data-label="Year">2022</td>
+                  <td data-label="Year">2024</td>
                 </tr>
                 <tr>
                   <td data-label="Awwards">AWARDS / Nominated Site of the Year <img src="/assets/img/home-5/home5-award-05.svg" alt="Awwwards Nomination" /></td>
                   <td data-label="Project">IT Company</td>
-                  <td data-label="Year">2022</td>
+                  <td data-label="Year">2024</td>
                 </tr>
               </tbody>
             </table>
