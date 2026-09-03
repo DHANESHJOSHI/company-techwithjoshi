@@ -207,79 +207,22 @@ function Header() {
               </Link>
             </li>
             <li
-              className={`menu-item-has-children ${
+              className={
                 [
                   "/case-study",
                   "/case-study2",
                   "/case-standard",
                   "/case-details",
+                  "/case-study-details",
+                  "/case-study-standard",
                 ].includes(currentRoute)
                   ? "active"
                   : ""
-              }`}
+              }
             >
-              <a
-                href="#"
-                className={`drop-down ${
-                  state.activeMenu === "case" ? "active" : ""
-                }`}
-              >
-                Case Study
-              </a>
-              <i
-                className={`bi bi-plus dropdown-icon ${
-                  state.activeMenu === "case" ? "active" : ""
-                }`}
-                onClick={() => toggleMenu("case")}
-              />
-              <ul
-                className={`sub-menu ${
-                  state.activeMenu === "case" ? "d-block" : ""
-                }`}
-              >
-                <li>
-                  <Link legacyBehavior href="/case-study">
-                    <a
-                      className={currentRoute === "/case-study" ? "active" : ""}
-                    >
-                      Case study 01
-                    </a>
-                  </Link>
-                </li>
-                <li>
-                  <Link legacyBehavior href="/case-study2">
-                    <a
-                      className={
-                        currentRoute === "/case-study2" ? "active" : ""
-                      }
-                    >
-                      Case study 02
-                    </a>
-                  </Link>
-                </li>
-                <li>
-                  <Link legacyBehavior href="/case-study-standard">
-                    <a
-                      className={
-                        currentRoute === "/case-study-standard" ? "active" : ""
-                      }
-                    >
-                      Case study standard
-                    </a>
-                  </Link>
-                </li>
-                <li>
-                  <Link legacyBehavior href="/case-study-details">
-                    <a
-                      className={
-                        currentRoute === "/case-study-details" ? "active" : ""
-                      }
-                    >
-                      Case study Details
-                    </a>
-                  </Link>
-                </li>
-              </ul>
+              <Link legacyBehavior href="/case-study">
+                <a>Case Study</a>
+              </Link>
             </li>
             <li className={currentRoute === "/blog" || currentRoute === "/blog-details" ? "active" : ""}>
               <Link legacyBehavior href="/blog">

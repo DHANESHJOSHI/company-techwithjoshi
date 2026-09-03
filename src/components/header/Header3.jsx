@@ -233,47 +233,23 @@ function Header3() {
                 <a>FAQ</a>
               </Link>
             </li>
-            <li className="menu-item-has-children">
-              <a
-                href="#"
-                className={`drop-down ${
-                  state.activeMenu === "case" ? "active" : ""
-                }`}
-              >
-                Case Study
-              </a>
-              <i
-                className={`bi bi-plus dropdown-icon ${
-                  state.activeMenu === "case" ? "active" : ""
-                }`}
-                onClick={() => toggleMenu("case")}
-              />
-              <ul
-                className={`sub-menu ${
-                  state.activeMenu === "case" ? "d-block" : ""
-                }`}
-              >
-                <li>
-                  <Link legacyBehavior href="/case-study">
-                    <a>Case study 01</a>
-                  </Link>
-                </li>
-                <li>
-                  <Link legacyBehavior href="/case-study2">
-                    <a>Case study 02</a>
-                  </Link>
-                </li>
-                <li>
-                  <Link legacyBehavior href="/case-study-standard">
-                    <a>Case study standard</a>
-                  </Link>
-                </li>
-                <li>
-                  <Link legacyBehavior href="/case-study-details">
-                    <a>Case study Details</a>
-                  </Link>
-                </li>
-              </ul>
+            <li
+              className={
+                [
+                  "/case-study",
+                  "/case-study2",
+                  "/case-standard",
+                  "/case-details",
+                  "/case-study-details",
+                  "/case-study-standard",
+                ].includes(currentRoute)
+                  ? "active"
+                  : ""
+              }
+            >
+              <Link legacyBehavior href="/case-study">
+                <a>Case Study</a>
+              </Link>
             </li>
             <li className={currentRoute === "/blog" || currentRoute === "/blog-details" ? "active" : ""}>
               <Link legacyBehavior href="/blog">
