@@ -39,7 +39,7 @@ function Footer5() {
     </div>
     <div className="container">
       <div className="row g-lg-4 gy-5">
-        <div className="col-lg-4 col-sm-6 d-flex">
+        <div className="col-lg-5 col-sm-12 d-flex">
           <div className="footer-widget">
             <div className="footer-contact mb-40">
               <h4>
@@ -75,7 +75,7 @@ function Footer5() {
             </div>
           </div>
         </div>
-        <div className="col-lg-3 col-sm-6 d-flex justify-content-lg-start justify-content-sm-end">
+        <div className="col-lg-4 col-sm-6 d-flex justify-content-lg-center">
           <div className="footer-widget">
             <div className="widget-title">
               <h4>Our Solutions</h4>
@@ -92,7 +92,7 @@ function Footer5() {
             </div>
           </div>
         </div>
-        <div className="col-lg-2 col-sm-6 d-flex justify-content-lg-center">
+        <div className="col-lg-3 col-sm-6 d-flex justify-content-lg-end">
           <div className="footer-widget">
             <div className="widget-title">
               <h4>Company</h4>
@@ -109,6 +109,8 @@ function Footer5() {
             </div>
           </div>
         </div>
+        {/* Resources Section - Disabled per request */}
+        {/*
         <div className="col-lg-3 col-sm-6 d-flex justify-content-sm-end">
           <div className="footer-widget">
             <div className="widget-title">
@@ -126,6 +128,7 @@ function Footer5() {
             </div>
           </div>
         </div>
+        */}
       </div>
     </div>
     <div className="footer-btm">

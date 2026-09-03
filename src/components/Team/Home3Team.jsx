@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 const DEFAULT_MEMBERS = [
   {
     name: "Dhanesh Joshi",
-    designation: "Founder & Principal Architect",
+    designation: "Founder & CEO",
     image: "assets/img/home-4/experts-01.png",
     socialLinks: {
       linkedin: "https://www.linkedin.com/in/dhanesh-joshi/",

@@ -70,57 +70,60 @@ function Footer2() {
           </div>
         </div>
       </div>
-      <div className="col-lg-3 col-sm-6 d-flex justify-content-lg-start justify-content-sm-end">
-        <div className="footer-widget">
-          <div className="widget-title">
-            <h4>Our Solutions</h4>
-          </div>
-          <div className="menu-container">
-            <ul>
-              <li><Link legacyBehavior href="/service"><a>Web Development</a></Link></li>
-              <li><Link legacyBehavior href="/service"><a>Mobile Development</a></Link></li>
-              <li><Link legacyBehavior href="/service"><a>Cloud Services</a></Link></li>
-              <li><Link legacyBehavior href="/service"><a>Network Connectivity</a></Link></li>
-              <li><Link legacyBehavior href="/service"><a>Data analytics</a></Link></li>
-              <li><Link legacyBehavior href="/service"><a>Software Development</a></Link></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div className="col-lg-2 col-sm-6 d-flex justify-content-lg-center">
-        <div className="footer-widget">
-          <div className="widget-title">
-            <h4>Company</h4>
-          </div>
-          <div className="menu-container">
-            <ul>
-              <li><Link legacyBehavior href="/about"><a>About Us</a></Link></li>
-              <li><Link legacyBehavior href="/case-study"><a>Case Study</a></Link></li>
-              <li><Link legacyBehavior href="/blog"><a>News &amp; Article</a></Link></li>
-              <li><Link legacyBehavior href="/team1"><a>Our Team</a></Link></li>
-              <li><Link legacyBehavior href="/project"><a>All Portfolio</a></Link></li>
-              <li><Link legacyBehavior href="/pricing"><a>Pricing Plan</a></Link></li>
-            </ul>
+        <div className="col-lg-4 col-sm-6 d-flex justify-content-lg-center">
+          <div className="footer-widget">
+            <div className="widget-title">
+              <h4>Our Solutions</h4>
+            </div>
+            <div className="menu-container">
+              <ul>
+                <li><Link legacyBehavior href="/service"><a>Web Development</a></Link></li>
+                <li><Link legacyBehavior href="/service"><a>Mobile Development</a></Link></li>
+                <li><Link legacyBehavior href="/service"><a>Cloud Services</a></Link></li>
+                <li><Link legacyBehavior href="/service"><a>Network Connectivity</a></Link></li>
+                <li><Link legacyBehavior href="/service"><a>Data analytics</a></Link></li>
+                <li><Link legacyBehavior href="/service"><a>Software Development</a></Link></li>
+              </ul>
+            </div>
           </div>
         </div>
-      </div>
-      <div className="col-lg-3 col-sm-6 d-flex justify-content-sm-end">
-        <div className="footer-widget">
-          <div className="widget-title">
-            <h4>Resources</h4>
-          </div>
-          <div className="menu-container">
-            <ul>
-              <li><a href="#">Support Area</a></li>
-              <li><a href="#">Support Policy</a></li>
-              <li><a href="#">Terms &amp; Conditions</a></li>
-              <li><a href="#">Privacy Policy</a></li>
-              <li><a href="#">Career</a></li>
-              <li><Link legacyBehavior href="/pricing"><a>Pricing Plan</a></Link></li>
-            </ul>
+        <div className="col-lg-3 col-sm-6 d-flex justify-content-lg-end">
+          <div className="footer-widget">
+            <div className="widget-title">
+              <h4>Company</h4>
+            </div>
+            <div className="menu-container">
+              <ul>
+                <li><Link legacyBehavior href="/about"><a>About Us</a></Link></li>
+                <li><Link legacyBehavior href="/case-study"><a>Case Study</a></Link></li>
+                <li><Link legacyBehavior href="/blog"><a>News &amp; Article</a></Link></li>
+                <li><Link legacyBehavior href="/team1"><a>Our Team</a></Link></li>
+                <li><Link legacyBehavior href="/project"><a>All Portfolio</a></Link></li>
+                <li><Link legacyBehavior href="/pricing"><a>Pricing Plan</a></Link></li>
+              </ul>
+            </div>
           </div>
         </div>
-      </div>
+        {/* Resources Section - Disabled per request */}
+        {/*
+        <div className="col-lg-3 col-sm-6 d-flex justify-content-sm-end">
+          <div className="footer-widget">
+            <div className="widget-title">
+              <h4>Resources</h4>
+            </div>
+            <div className="menu-container">
+              <ul>
+                <li><a href="#">Support Area</a></li>
+                <li><a href="#">Support Policy</a></li>
+                <li><a href="#">Terms &amp; Conditions</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Career</a></li>
+                <li><Link legacyBehavior href="/pricing"><a>Pricing Plan</a></Link></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        */}
     </div>
   </div>
   <div className="footer-btm">

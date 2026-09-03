@@ -70,7 +70,7 @@ function Footer6() {
             </div>
           </div>
         </div>
-        <div className="col-lg-3 col-sm-6 d-flex justify-content-lg-start justify-content-sm-end">
+        <div className="col-lg-4 col-sm-6 d-flex justify-content-lg-center">
           <div className="footer-widget">
             <div className="widget-title">
               <h4>Our Solutions</h4>
@@ -87,7 +87,7 @@ function Footer6() {
             </div>
           </div>
         </div>
-        <div className="col-lg-2 col-sm-6 d-flex justify-content-lg-center">
+        <div className="col-lg-3 col-sm-6 d-flex justify-content-lg-end">
           <div className="footer-widget">
             <div className="widget-title">
               <h4>Company</h4>
@@ -104,6 +104,8 @@ function Footer6() {
             </div>
           </div>
         </div>
+        {/* Resources Section - Disabled per request */}
+        {/*
         <div className="col-lg-3 col-sm-6 d-flex justify-content-sm-end">
           <div className="footer-widget">
             <div className="widget-title">
@@ -121,6 +123,7 @@ function Footer6() {
             </div>
           </div>
         </div>
+        */}
       </div>
     </div>
     <div className="footer-btm">
